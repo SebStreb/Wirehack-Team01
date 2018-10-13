@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   getSuggestions() {
-    this.quoteService.getLocationSuggestions(this.workLocation).subscribe(result => {
+    this.quoteService.getLocationSuggestions(encodeURI(this.workLocation)).subscribe(result => {
       console.log(result);
     });
   }
@@ -88,12 +88,12 @@ export class HomeComponent implements OnInit, OnChanges {
       this.houses = results.map((item: any) => {
         return {
           Type: item.property.type,
-          City: item.property.location.address.placeName,
+          City: item.property.location.address.locality,
           PostalCode: item.property.location.address.postalCode,
-          Bedrooms: item.property.bedroom,
-          Size: item.property.livingDescription.netHabitableSurface,
-          Price: item.property.transaction.rental.monthlyRentalPrice,
-          Duration: 30,
+          Bedrooms: item.property.bedroom.count,
+          Size: 178,
+          Price: 160000,
+          Duration: item.travelDuration,
           Image: item.media.pictures.baseUrl + item.media.pictures.items[0].relativeUrl.large,
           Info: ''
         };
@@ -117,6 +117,7 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   getDurationString(duration: number) {
+    duration = (duration - (duration % 60)) / 60;
     let durationString = '~ ';
     if (duration < 60) {
       durationString += duration + 'm';

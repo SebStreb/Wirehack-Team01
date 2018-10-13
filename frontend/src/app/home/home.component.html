@@ -31,10 +31,10 @@
           <div class="row">
             <div class="col-md-9">
               <p class="houseType">{{house.Type}}</p>
-              <p class="houseDetails">{{house.City}} ({{house.PostalCode}}), {{house.Bedrooms}} bed.</p>
+              <p class="houseDetails">{{house.City}} ({{house.PostalCode}}), {{house.Bedrooms}} bedrooms</p>
             </div>
             <div class="col-md-3 text-right">
-              <p class="houseDuration{{getDurationCategory(house.Duration)}}">{{getDurationString(house.Duration)}}</p>
+              <p class="houseDuration{{getDurationCategory(house.Duration)}}">{{getDurationString(house.Duration)}} {{house.Duration}}</p>
               <p class="housePrice"><i class="fa fa-euro-sign"></i> {{getPriceString(house.Price)}}</p>
             </div>
           </div>

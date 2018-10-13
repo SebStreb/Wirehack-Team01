@@ -5,7 +5,8 @@ const google = require('./google');
 const immoweb = require('./immoweb');
 
 const app = express();
-app.options('*', cors());
+app.use(cors());
+
 
 // GET /get-location?input=Brussels
 app.get('/get-location', async (req, res) => {

@@ -24,7 +24,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD9QGDDHiiVSUMpH3ZbwhAI6w_AAK_rJMY'
     }),
-    AgmSnazzyInfoWindowModule,
+    AgmSnazzyInfoWindowModule
   ],
   declarations: [HomeComponent],
   providers: [QuoteService, ImmoWebService]

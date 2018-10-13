@@ -51,11 +51,12 @@ export class HomeComponent implements OnInit {
         Bedsrooms: 3,
         Size: 19000,
         Price: 1190000,
-        Duration: 45,
+        Duration: 65,
         Image: '../../assets/housie2.jpg',
         Info:
           'Oostduinkerke – Zeer ruime boerderij met grote stal. Bel Eric, ook op zon-en feestdagen, ' +
-          '0475/82.11.11, of bezoek bureel BROKER Leopold II laan ...'
+          '0475/82.11.11, of bezoek bureel BROKER Leopold II laan 83a OOSTDUINKERKE, recht tegenover "De Mikke” ' +
+          'met ruime parking.'
       }
     ];
     console.log(this.houses);
@@ -77,5 +78,34 @@ export class HomeComponent implements OnInit {
     this.quoteService.getLocationSuggestions(this.workLocation).subscribe(result => {
       console.log(result);
     });
+  }
+
+  getPriceString(price: number) {
+    let priceString = '' + (price % 1000);
+    while (price >= 1000) {
+      if (price % 1000 < 10) {
+        priceString = '00' + priceString;
+      } else if (price % 1000 < 100) {
+        priceString = '0' + priceString;
+      }
+      price = (price - (price % 1000)) / 1000;
+      priceString = (price % 1000) + '.' + priceString;
+    }
+    return priceString;
+  }
+
+  getDurationString(duration: number) {
+    let durationString = '~ ';
+    if (duration < 60) {
+      durationString += duration + 'm';
+    } else {
+      durationString += (duration - (duration % 60)) / 60 + 'h';
+      if (duration % 60 < 10) {
+        durationString += '0' + (duration % 60);
+      } else {
+        durationString += duration % 60;
+      }
+    }
+    return durationString;
   }
 }

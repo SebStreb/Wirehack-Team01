@@ -16,6 +16,7 @@ exports.getDuration = async (origin, destination, mode) => {
     params
   )}`;
 
+  // eslint-disable-next-line no-console
   if (api.debug) console.log("GET", url);
   return request(url).then(body => {
     const parsed = JSON.parse(body);
@@ -38,6 +39,7 @@ exports.getCoordinatesFromText = async input => {
     api.google_url
   }/place/findplacefromtext/json?${querystring.stringify(params)}`;
 
+  // eslint-disable-next-line no-console
   if (api.debug) console.log("GET", url);
   return request(url).then(body => {
     const parsed = JSON.parse(body);

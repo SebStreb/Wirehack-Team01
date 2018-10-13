@@ -1,0 +1,7 @@
+{
+	"immoweb_url": "https://api.example.com",
+	"immoweb_key": "API-KEY",
+	"google_url": "https://maps.googleapis.com/maps/api",
+	"google_key": "GOOGLE API KEY",
+	"debug": true
+}

@@ -57,6 +57,13 @@ app.get("/get-location", async (req, res) => {
       item.price = item.transaction.rental.monthlyRentalPrice;
     else item.price = "-1";
 
+    if (
+      item.property.hasOwnProperty("livingDescription") &&
+      item.property.livingDescription.hasOwnProperty("netHabitableSurface")
+    )
+      item.surface = item.property.livingDescription.netHabitableSurface;
+    else item.surface = "-1";
+
     return item;
   });
 
@@ -65,7 +72,7 @@ app.get("/get-location", async (req, res) => {
     // only include those that we can find a route to
     .filter(item => item.travelDuration != "-1")
     // only include those that we can find a price to
-    .filter(item => item.price != "-1") // TODO do we ?
+    //.filter(item => item.price != "-1") // TODO do we ?
     // sort them by lowest travelroute
     .sort(
       (a, b) =>

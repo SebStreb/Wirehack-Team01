@@ -36,11 +36,13 @@ export class HomeComponent implements OnInit, OnChanges {
     this.immoWebService.getAll(this.workLocation, this.maxDuration).subscribe((results: any) => {
       this.houses = results.map((item: any) => {
         return {
-          Type: item.property.type,
+          Id: item.id,
+          PropertyType: item.property.type,
+          LocationType: item.transaction.type,
           City: item.property.location.address.locality,
           PostalCode: item.property.location.address.postalCode,
           Bedrooms: item.property.bedroom.count,
-          Size: Math.round(Math.random() * 10000),
+          Size: item.surface,
           Price: item.price,
           Duration: item.travelDuration.driving,
           Image: item.media.pictures.baseUrl + item.media.pictures.items[0].relativeUrl.large,

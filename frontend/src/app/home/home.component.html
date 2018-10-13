@@ -73,8 +73,8 @@
         <div class="col-md-8">
           <div class="row">
             <div class="col-md-9">
-              <p class="houseType">{{house.Type}}</p>
-              <p class="houseDetails">{{house.City}} ({{house.PostalCode}}), {{house.Bedrooms}} bedrooms</p>
+              <p class="houseType">{{house.PropertyType}}</p>
+              <p class="houseDetails">{{house.City}} ({{house.PostalCode}}), {{house.Bedrooms}} bedrooms, {{house.Size}} m^2</p>
             </div>
             <div class="col-md-3 text-right">
               <p class="houseDuration{{getDurationCategory(house.Duration)}}">{{getDurationString(house.Duration)}}</p>
@@ -82,6 +82,7 @@
             </div>
           </div>
           <p class="houseInfo text-justify">{{house.Info}}</p>
+          <p class="houseLink text-justify"><a href="https://www.immoweb.be/en/ad/{{house.PropertyType}}/{{house.TransactionType}}/{{house.City}}/{{house.PostalCode}}/id{{house.Id}}" target="_blank">www.immoweb.be</a></p>
         </div>
       </div>
     </div>

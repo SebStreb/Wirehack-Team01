@@ -75,7 +75,16 @@ app.get("/get-location", (req, res) => {
 	if (!req.query.input || req.query.input.length === 0)
 		return res.send("please specify the input")
 
-	request(`${googlePlacesApi}/json?input=${req.query.input}&inputtype=textquery&fields=formatted_address%2Cgeometry&key=${api.google_key}`, (error, response, body) => {
+	const params = {
+		input: req.query.input,
+		inputtype: 'textquery',
+		fields: 'formatted_address,geometry',
+		key: api.google_key
+	}
+
+	request({
+		url: api.google_url + '/place/findplacefromtext/json?' + querystring.stringify(params)
+	}, (error, response, body) => {
 		if (error) logError(error, response)
 
 		fullRequest = JSON.parse(body)

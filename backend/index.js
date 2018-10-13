@@ -2,7 +2,8 @@ const fs = require('fs')
 const request = require('request')
 const express = require('express')
 const querystring = require('querystring')
-const polyline = require('@mapbox/polyline');
+const polyline = require('@mapbox/polyline')
+const aynsc = require('async')
 
 //Line to encode lat/long in Google :
 //console.log(polyline.encode([[50.83711, 4.399754]]))
@@ -70,7 +71,8 @@ app.get("/get-location", (req, res) => {
         console.log("error:", error);
         console.log("statusCode:", response && response.statusCode);
       }
-      fullRequest = JSON.parse(body);
+	  console.log(body);
+	  fullRequest = JSON.parse(body);
       coordinates = [fullRequest.candidates[0].geometry.location.lat, fullRequest.candidates[0].geometry.location.lng];
       const params = {
 		propertyTypes: 'HOUSE', //required
@@ -88,10 +90,22 @@ app.get("/get-location", (req, res) => {
 			'Accept': 'application/vnd.be.immoweb.classifieds.v2.1+json' //required
 		}
 	}, function (error, response, body) {
-		if (error) console.log(error)
-		//console.log(response)
-		//console.log(body)
-		res.send(body)
+		if (error) console.log(error);
+
+		// TODO: array of houses should be here
+		const listOfHouses = JSON.parse(body).results;
+
+		async.parallelLimit(listOfHouses, 5, function(callback){
+			// do the google directions api call here to get duration
+			
+			// one we have it put it in result, and execute the callback function
+			callback(null, result);
+		}, function(error, allResults) {
+			// the last function will get all results
+			res.send(allResults)
+		});
+
+		}
 	})
     }
   );

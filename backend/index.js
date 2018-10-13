@@ -12,11 +12,11 @@ app.get("/get-location", async (req, res) => {
   if (!req.query.input || req.query.input.length === 0)
     return res.send("please specify the input");
   const input = req.query.input;
+  const maxWait = req.query.max;
   const houseOrApp = req.query.houseApp;
   const rentOrBuy = req.query.rentBuy;
   const minBedroom = req.query.minBed;
   const maxPrice = req.query.maxPrice;
-  console.log(houseOrApp + " " + rentOrBuy + " " + minBedroom + " " + maxPrice);
 
   const inputCoordinates = await google.getCoordinatesFromText(input);
   const listOfHouses = await immoweb.getClassifieds(
@@ -75,6 +75,13 @@ app.get("/get-location", async (req, res) => {
       item.surface = item.property.livingDescription.netHabitableSurface;
     else item.surface = "-1";
 
+    if (
+      item.property.hasOwnProperty("bedroom") &&
+      item.property.bedroom.hasOwnProperty("count")
+    )
+      item.bedrooms = item.property.bedroom.count;
+    else item.bedrooms = "-1";
+
     return item;
   });
 
@@ -82,6 +89,8 @@ app.get("/get-location", async (req, res) => {
   const cleanResults = results
     // only include those that we can find a route to
     .filter(item => item.travelDuration != "-1")
+    // only include those where the duration is not too long
+    .filter(item => parseInt(item.travelDuration.driving) < maxWait * 60)
     // only include those that we can find a price to
     //.filter(item => item.price != "-1") // TODO do we ?
     // sort them by lowest travelroute

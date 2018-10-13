@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit, OnChanges {
             LocationType: item.transaction.type,
             City: item.property.location.address.locality,
             PostalCode: item.property.location.address.postalCode,
-            Bedrooms: item.property.bedroom.count,
+            Bedrooms: item.bedrooms,
             Size: item.surface,
             Price: item.price,
             Duration: item.travelDuration.driving,

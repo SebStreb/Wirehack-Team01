@@ -15,6 +15,6 @@ export class ImmoWebService {
   constructor(private httpClient: HttpClient) {}
 
   getAll(userLocation: string, maxWait: number): Observable<any> {
-    return <Observable<any>>this.httpClient.get(`/get-location?input=${userLocation}&max=${maxWait}`);
+    return <Observable<any>>this.httpClient.get(`http://localhost:3000/get-location?input=${userLocation}&max=${maxWait}`);
   }
 }

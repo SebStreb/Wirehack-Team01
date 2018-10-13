@@ -21,10 +21,24 @@
     </div>
 
     <div class="card" *ngFor="let house of houses">
-      <p>{{house.Type}} {{house.Price}}<i class="fa fa-euro-sign"></i></p>
-      <p>{{house.City}} ({{house.PostalCode}})</p>
-      <p>{{house.Bedrooms}} bed.</p>
-      <p>{{house.Info}}</p>
+      <div class="row">
+        <div class="col-md-4">
+          <img class="houseImage" src="{{house.Image}}"/>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-9">
+              <p class="houseType">{{house.Type}}</p>
+              <p class="houseDetails">{{house.City}} ({{house.PostalCode}}), {{house.Bedrooms}} bed.</p>
+            </div>
+            <div class="col-md-3 text-right">
+              <p class="houseDuration">{{house.Duration}} min</p>
+              <p class="housePrice"><i class="fa fa-euro-sign"></i> {{house.Price}}</p>
+            </div>
+          </div>
+          <p class="houseInfo text-justify">{{house.Info}}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

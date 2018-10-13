@@ -1,5 +1,6 @@
 .jumbotron {
   padding: 10%;
+  color: #414141;
 }
 
 .logo {
@@ -27,4 +28,40 @@ h1 {
   clear: both;
   width: 20%;
   margin-bottom: 4rem;
+}
+
+.card {
+  clear: both;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.houseImage {
+  width: 100%;
+  height: auto;
+}
+
+.houseType {
+  font-weight: bold;
+}
+
+.houseDuration {
+  color: #a3c791;
+}
+
+.houseDetails,
+.housePrice {
+  margin-top: -0.5rem;
+  font-size: 0.8rem;
+}
+
+.houseInfo {
+  font-size: 0.7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6; /* number of lines to show */
+  line-height: 1.5; /* fallback */
+  max-height: 8.8em; /* fallback */
 }

@@ -20,6 +20,7 @@
       </button>
     </div>
 
+    <h4>Results</h4>
     <div class="card" *ngFor="let house of houses">
       <div class="row">
         <div class="col-md-4">
@@ -32,8 +33,8 @@
               <p class="houseDetails">{{house.City}} ({{house.PostalCode}}), {{house.Bedrooms}} bed.</p>
             </div>
             <div class="col-md-3 text-right">
-              <p class="houseDuration">{{house.Duration}} min</p>
-              <p class="housePrice"><i class="fa fa-euro-sign"></i> {{house.Price}}</p>
+              <p class="houseDuration">{{getDurationString(house.Duration)}}</p>
+              <p class="housePrice"><i class="fa fa-euro-sign"></i> {{getPriceString(house.Price)}}</p>
             </div>
           </div>
           <p class="houseInfo text-justify">{{house.Info}}</p>

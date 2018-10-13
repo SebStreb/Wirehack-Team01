@@ -6,16 +6,22 @@
     </h1>
 
     <div class="form-group">
-      <label class="form-row">
-        <span translate>Location</span>
-        <input type="text" [(ngModel)]="workLocation" [ngModelOptions]="{standalone: true}"
-               class="form-control locationInput" required/>
-        <!--(change)=getSuggestions() -->
-      </label>
-      <label class="form-row durationRow">
-        <span translate>Maximum travel time (minutes)</span>
-        <input type="number" [(ngModel)]="maxDuration" class="form-control durationInput" required/>
-      </label>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-row">
+            <span translate>Location</span>
+            <input type="text" [(ngModel)]="workLocation" [ngModelOptions]="{standalone: true}"
+                   class="form-control locationInput" required/>
+            <!--(change)=getSuggestions() -->
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-row">
+            <span translate>Maximum travel time (minutes)</span>
+            <input type="number" [(ngModel)]="maxDuration" class="form-control durationInput" required/>
+          </label>
+        </div>
+      </div>
       <button class="btn btn-primary" type="submit" (click)="search()">
         <span translate>Search</span>
       </button>
@@ -34,7 +40,8 @@
               <p class="houseDetails">{{house.City}} ({{house.PostalCode}}), {{house.Bedrooms}} bedrooms</p>
             </div>
             <div class="col-md-3 text-right">
-              <p class="houseDuration{{getDurationCategory(house.Duration)}}">{{getDurationString(house.Duration)}} {{house.Duration}}</p>
+              <p class="houseDuration{{getDurationCategory(house.Duration)}}">{{getDurationString(house.Duration)}}
+                {{house.Duration}}</p>
               <p class="housePrice"><i class="fa fa-euro-sign"></i> {{getPriceString(house.Price)}}</p>
             </div>
           </div>

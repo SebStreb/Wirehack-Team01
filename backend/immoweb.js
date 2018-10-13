@@ -11,7 +11,6 @@ exports.getClassifieds = async (
   minCount,
   maxPrice
 ) => {
-  console.log("test ?");
   const params = {
     propertyTypes: properType, // required
     transactionTypes: transaType, // required
@@ -21,15 +20,32 @@ exports.getClassifieds = async (
     geoSearchRadius: 10000,
     range: "0-30"
   };
-  console.log("test ?");
   // eslint-disable-next-line no-console
   if (api.debug)
     console.log(
       "GET",
       `${api.immoweb_url}/classifieds?${querystring.stringify(params)}`
     );
+  const url = `${api.immoweb_url}/classifieds?${querystring.stringify(params)}`;
+
+  // eslint-disable-next-line no-console
+  if (api.debug) console.log("GET", url);
   return request({
-    url: `${api.immoweb_url}/classifieds?${querystring.stringify(params)}`,
+    url: url,
+    headers: {
+      "x-iw-api-key": api.immoweb_key,
+      Accept: "application/vnd.be.immoweb.classifieds.v2.1+json"
+    }
+  }).then(body => JSON.parse(body));
+};
+
+exports.getInformations = async classifiedID => {
+  const url = `${api.immoweb_url}/classifieds/${classifiedID}`;
+
+  // eslint-disable-next-line no-console
+  if (api.debug) console.log("GET", url);
+  return request({
+    url: url,
     headers: {
       "x-iw-api-key": api.immoweb_key,
       Accept: "application/vnd.be.immoweb.classifieds.v2.1+json"

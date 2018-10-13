@@ -43,15 +43,10 @@ export class HomeComponent implements OnInit, OnChanges {
             PostalCode: item.property.location.address.postalCode,
             Bedrooms: item.property.bedroom.count,
             Size: Math.round(Math.random() * 10000),
-            Price: Math.round(Math.random() * 10000),
+            Price: item.price,
             Duration: item.travelDuration.driving,
             Image: item.media.pictures.baseUrl + item.media.pictures.items[0].relativeUrl.large,
-            Info:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ' +
-              'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' +
-              'ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse ' +
-              'cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa ' +
-              'qui officia deserunt mollit anim id est laborum.'
+            Info: item.description
           };
         });
         console.log(results);

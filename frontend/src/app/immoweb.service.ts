@@ -11,12 +11,12 @@ export interface RandomQuoteContext {
 */
 
 @Injectable()
-export class ImmowebService {
+export class ImmoWebService {
   constructor(private httpClient: HttpClient) {}
 
   getAll(userLocation: string, maxWait: number): Observable<any> {
     return <Observable<any>>(
-      this.httpClient.get('http://localhost:3000/get-location?input=' + userLocation)
+      this.httpClient.get(`http://localhost:3000/get-location?input=${userLocation}&max=${maxWait}`)
     );
   }
 }

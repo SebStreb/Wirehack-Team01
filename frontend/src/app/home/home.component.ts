@@ -1,24 +1,38 @@
-import { ImmowebService } from './../immoweb.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
 import { QuoteService } from './quote.service';
+import { ImmoWebService } from '@app/immoweb.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges {
   quote: string;
   isLoading: boolean;
   workLocation: string;
-  maxDuration: number = 40;
+  maxDuration = 40;
   houses: any[];
 
-  constructor(private quoteService: QuoteService, private immowebService: ImmowebService) {}
+  constructor(private quoteService: QuoteService, private immoWebService: ImmoWebService) {}
 
   ngOnInit() {
+    this.isLoading = true;
+    this.quoteService
+      .getRandomQuote({ category: 'dev' })
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe((quote: string) => {
+        this.quote = quote;
+      });
+  }
+
+  ngOnChanges() {
     this.houses = [
       {
         Type: 'Bungalow',
@@ -60,24 +74,31 @@ export class HomeComponent implements OnInit {
           'met ruime parking.'
       }
     ];
-    console.log(this.houses);
-    this.isLoading = true;
-    this.quoteService
-      .getRandomQuote({ category: 'dev' })
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((quote: string) => {
-        this.quote = quote;
-      });
+    this.ngOnInit();
   }
 
   getSuggestions() {
-    // this.immowebService.getAll('location', 20).subscribe((results: any) => this.houses = results);
     this.quoteService.getLocationSuggestions(this.workLocation).subscribe(result => {
       console.log(result);
+    });
+  }
+
+  search() {
+    this.immoWebService.getAll(this.workLocation, this.maxDuration).subscribe((results: any) => {
+      this.houses = results.map((item: any) => {
+        return {
+          Type: item.property.type,
+          City: item.property.location.address.placeName,
+          PostalCode: item.property.location.address.postalCode,
+          Bedrooms: item.property.bedroom,
+          Size: item.property.livingDescription.netHabitableSurface,
+          Price: item.property.transaction.rental.monthlyRentalPrice,
+          Duration: 30,
+          Image: item.media.pictures.baseUrl + item.media.pictures.items[0].relativeUrl.large,
+          Info: ''
+        };
+      });
+      console.log(results);
     });
   }
 

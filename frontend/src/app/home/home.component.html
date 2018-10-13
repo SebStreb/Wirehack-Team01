@@ -9,13 +9,14 @@
       <label class="form-row">
         <span translate>Location</span>
         <input type="text" [(ngModel)]="workLocation" [ngModelOptions]="{standalone: true}"
-               class="form-control locationInput" (change)="getSuggestions()" required/>
+               class="form-control locationInput" required/>
+        <!--(change)=getSuggestions() -->
       </label>
       <label class="form-row durationRow">
         <span translate>Maximum travel time (minutes)</span>
-        <input type="number" [ngModel]="maxDuration" class="form-control durationInput" required/>
+        <input type="number" [(ngModel)]="maxDuration" class="form-control durationInput" required/>
       </label>
-      <button class="btn btn-primary" type="submit">
+      <button class="btn btn-primary" type="submit" (click)="search()">
         <span translate>Search</span>
       </button>
     </div>

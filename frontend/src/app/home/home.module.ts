@@ -8,10 +8,11 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
 import { FormsModule } from '@angular/forms';
+import { ImmoWebService } from '@app/immoweb.service';
 
 @NgModule({
   imports: [CommonModule, TranslateModule, CoreModule, FormsModule, SharedModule, HomeRoutingModule],
   declarations: [HomeComponent],
-  providers: [QuoteService]
+  providers: [QuoteService, ImmoWebService]
 })
 export class HomeModule {}

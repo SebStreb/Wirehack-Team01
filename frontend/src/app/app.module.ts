@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 import { environment } from '@env/environment';
 import { CoreModule } from '@app/core';
@@ -35,6 +36,7 @@ import { AppRoutingModule } from './app-routing.module';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD9QGDDHiiVSUMpH3ZbwhAI6w_AAK_rJMY'
     }),
+    AgmSnazzyInfoWindowModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

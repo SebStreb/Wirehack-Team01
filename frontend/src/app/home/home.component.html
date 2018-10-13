@@ -64,11 +64,17 @@
       </button>
     </div>
 
-    <agm-map [latitude]="lat" [longitude]="lng">
-      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-map *ngIf="houses.length > 0" style="height: 300px" [latitude]="51.673858" [longitude]="7.815982">
+      <agm-marker *ngFor="let house of houses" [latitude]=house.GeoPoint.latitude [longitude]=house.GeoPoint.longitude>
+        <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+          <ng-template>
+            {{house.Price}}
+          </ng-template>
+        </agm-snazzy-info-window>
+      </agm-marker>
     </agm-map>
 
-    <h4>Results</h4>
+    <h4 *ngIf="houses.length > 0">Results</h4>
     <div class="card" *ngFor="let house of houses">
       <div class="row">
         <div class="col-md-4">

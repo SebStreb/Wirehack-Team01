@@ -11,12 +11,21 @@ import { FormsModule } from '@angular/forms';
 import { ImmoWebService } from '@app/immoweb.service';
 
 import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, CoreModule, FormsModule, SharedModule, HomeRoutingModule,
-  AgmCoreModule.forRoot({
+  imports: [
+    CommonModule,
+    TranslateModule,
+    CoreModule,
+    FormsModule,
+    SharedModule,
+    HomeRoutingModule,
+    AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD9QGDDHiiVSUMpH3ZbwhAI6w_AAK_rJMY'
-    })],
+    }),
+    AgmSnazzyInfoWindowModule,
+  ],
   declarations: [HomeComponent],
   providers: [QuoteService, ImmoWebService]
 })

@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit, OnChanges {
           Bedrooms: item.property.bedroom.count,
           Size: Math.round(Math.random() * 10000),
           Price: Math.round(Math.random() * 10000),
-          Duration: item.travelDuration,
+          Duration: item.travelDuration.driving,
           Image: item.media.pictures.baseUrl + item.media.pictures.items[0].relativeUrl.large,
           Info:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ' +

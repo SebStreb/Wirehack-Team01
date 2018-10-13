@@ -1,3 +1,4 @@
+import { ImmowebService } from './../immoweb.service';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   maxDuration: number;
   houses: any[];
 
-  constructor(private quoteService: QuoteService) {}
+  constructor(private quoteService: QuoteService, private immowebService: ImmowebService) {}
 
   ngOnInit() {
     this.houses = [
@@ -74,7 +75,7 @@ export class HomeComponent implements OnInit {
   }
 
   getSuggestions() {
-    console.log(this.workLocation);
+    // this.immowebService.getAll('location', 20).subscribe((results: any) => this.houses = results);
     this.quoteService.getLocationSuggestions(this.workLocation).subscribe(result => {
       console.log(result);
     });

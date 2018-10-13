@@ -64,8 +64,10 @@ app.get("/duration", (req, res) => {
 	}, function (error, response, body) {
 		if (error) logError(error, response)
 		const result = JSON.parse(body)
-		const duration = result.routes[0].legs[0].duration.value
-		res.send(duration + '')
+		if (result.routes.length > 0) {
+			const duration = result.routes[0].legs[0].duration.value
+			res.send(duration + '')
+		} else res.send('-1')
 	})
 })
 
@@ -124,13 +126,13 @@ app.get("/get-location", (req, res) => {
 				}, (error, response, body) => {
 					if (error) logError(error, response)
 					item.travelDuration = body
+					// one we have it put it in result, and execute the callback function
 					callback(null, item)
 				})
-				// one we have it put it in result, and execute the callback function
-				
-			}, function(error, filtered) {
+			}, function(error, results) {
 				// the last function will get all results
-				res.send(filtered)
+				const filtered = results.filter(item => item.travelDuration != '-1')
+				res.send(filtered.sort((a, b) => parseInt(a.travelDuration) - parseInt(b.travelDuration)))
 			})
 		})
 	})

@@ -12,6 +12,7 @@ exports.getDuration = async (origin, destination, mode) => {
     alternatives: false, // we only need one route to get its time
     // departure_time: TODO get timestamp for a random 8:00 in the future
   };
+  // eslint-disable-next-line no-console
   if (api.debug) console.log('GET', `${api.google_url}/directions/json?${querystring.stringify(params)}`);
   return request(`${api.google_url}/directions/json?${querystring.stringify(params)}`).then((body) => {
     const parsed = JSON.parse(body);
@@ -29,6 +30,7 @@ exports.getCoordinatesFromText = async (input) => {
     fields: 'formatted_address,geometry',
     key: api.google_key,
   };
+  // eslint-disable-next-line no-console
   if (api.debug) console.log('GET', `${api.google_url}/place/findplacefromtext/json?${querystring.stringify(params)}`);
   return request(`${api.google_url}/place/findplacefromtext/json?${querystring.stringify(params)}`).then((body) => {
     const parsed = JSON.parse(body);

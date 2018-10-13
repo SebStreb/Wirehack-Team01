@@ -33,12 +33,15 @@ app.get('/get-location', async (req, res) => {
   const results = await Promise.all(promiseFiltered);
 
   const cleanResults = results
-    .filter(item => item.travelDuration != '-1') // only include those that we can find a route to
-    .sort((a, b) => parseInt(a.travelDuration.driving) - parseInt(b.travelDuration.driving)); // sort them by lowest travelroute
+    // only include those that we can find a route to
+    .filter(item => item.travelDuration != '-1') 
+    // sort them by lowest travelroute
+    .sort((a, b) => parseInt(a.travelDuration.driving, 10) - parseInt(b.travelDuration.driving, 10)); 
 
-  res.send(cleanResults);
+  return res.send(cleanResults);
 });
 
 app.listen(3000, () => {
+  // eslint-disable-next-line no-console
   console.log('Example app listening on port 3000!');
 });

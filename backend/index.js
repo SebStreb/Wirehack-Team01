@@ -43,6 +43,13 @@ app.get('/test1', (req, res) => {
 // GET /duration?origin=XX.XX,XX.XX&dest=XX.XX,XX.XX&mode=XXXX
 // modes : driving, walking, bicycling, transit
 app.get("/duration", (req, res) => {
+	if (!req.query.origin || req.query.origin.length === 0)
+		return res.send("Please specify the origin")
+	if (!req.query.dest || req.query.dest.length === 0)
+		return res.send("Please specify the destination")
+	if (!req.query.mode || req.query.mode.length === 0)
+		return res.send("Please specify the mode")
+
 	const params = {
 		key: api.google_key,
 		origin: req.query.origin,

@@ -18,7 +18,7 @@ exports.getClassifieds = async (
     maxPrice: maxPrice,
     geoSearchPoint: polyline.encode([coordinates]),
     geoSearchRadius: 10000,
-    range: "0-30"
+    range: "0-5"
   };
   // eslint-disable-next-line no-console
   if (api.debug)

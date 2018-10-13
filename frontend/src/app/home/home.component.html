@@ -11,7 +11,10 @@
           <label class="form-row">
             <span translate>Location</span>
             <input type="text" [(ngModel)]="workLocation" [ngModelOptions]="{standalone: true}"
-                   class="form-control locationInput" required/>
+                   class="form-control locationInput" required/><br>
+            <span translate>Location 2</span>
+            <input type="text" [(ngModel)]="otherLocation" [ngModelOptions]="{standalone: true}"
+                   class="form-control locationInput"/>
             <!--(change)=getSuggestions() -->
           </label>
         </div>

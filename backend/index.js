@@ -18,6 +18,15 @@ app.get("/get-location", async (req, res) => {
   const minBedroom = req.query.minBed;
   const maxPrice = req.query.maxPrice;
 
+  var multiple = false;
+  var otherCoordinates;
+  if (req.query.otherLoc !== "undefined") {
+    const otherLoc = req.query.otherLoc;
+    otherCoordinates = await google.getCoordinatesFromText(otherLoc);
+    console.log(otherLoc);
+    multiple = true;
+  }
+
   const inputCoordinates = await google.getCoordinatesFromText(input);
   const listOfHouses = await immoweb.getClassifieds(
     inputCoordinates,
@@ -50,6 +59,21 @@ app.get("/get-location", async (req, res) => {
         "walking"
       )
     };
+    if (multiple) {
+      item.travelDuration2 = {
+        driving: await google.getDuration(
+          otherCoordinates,
+          itemCoordinates,
+          "driving"
+        ),
+        walking: await google.getDuration(
+          otherCoordinates,
+          itemCoordinates,
+          "walking"
+        )
+      };
+    }
+    console.log(item);
 
     const detailedItem = await immoweb.getInformations(item.id);
 
@@ -86,6 +110,7 @@ app.get("/get-location", async (req, res) => {
   });
 
   const results = await Promise.all(promiseFiltered);
+  //TODO : clean w/ 2 locations
   const cleanResults = results
     // only include those that we can find a route to
     .filter(item => item.travelDuration != "-1")

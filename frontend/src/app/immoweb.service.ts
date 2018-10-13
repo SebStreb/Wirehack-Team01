@@ -16,6 +16,7 @@ export class ImmoWebService {
 
   getAll(
     userLocation: string,
+    otherLocation: string,
     maxWait: number,
     houseOrApp: string,
     rentOrBuy: string,
@@ -24,7 +25,7 @@ export class ImmoWebService {
   ): Observable<any> {
     return <Observable<any>>(
       this.httpClient.get(
-        `http://localhost:3000/get-location?input=${userLocation}&max=${maxWait}&houseApp=${houseOrApp}&rentBuy=${rentOrBuy}&minBed=${minBed}&maxPrice=${maxPrice}`
+        `http://localhost:3000/get-location?input=${userLocation}&otherLoc=${otherLocation}&max=${maxWait}&houseApp=${houseOrApp}&rentBuy=${rentOrBuy}&minBed=${minBed}&maxPrice=${maxPrice}`
       )
     );
   }

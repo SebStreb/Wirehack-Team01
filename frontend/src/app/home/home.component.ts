@@ -11,6 +11,7 @@ import { ImmoWebService } from '@app/immoweb.service';
 })
 export class HomeComponent implements OnInit, OnChanges {
   workLocation: string;
+  otherLocation: string;
   housingType: string;
   rentOrBuy: string;
   maxPrice: number;
@@ -36,7 +37,15 @@ export class HomeComponent implements OnInit, OnChanges {
 
   search() {
     this.immoWebService
-      .getAll(this.workLocation, this.maxDuration, this.housingType, this.rentOrBuy, this.maxPrice, this.minBedroom)
+      .getAll(
+        this.workLocation,
+        this.otherLocation,
+        this.maxDuration,
+        this.housingType,
+        this.rentOrBuy,
+        this.maxPrice,
+        this.minBedroom
+      )
       .subscribe((results: any) => {
         this.houses = results.map((item: any) => {
           return {

@@ -16,6 +16,7 @@ exports.getClassifieds = async coordinates => {
   };
   const url = `${api.immoweb_url}/classifieds?${querystring.stringify(params)}`;
 
+  // eslint-disable-next-line no-console
   if (api.debug) console.log("GET", url);
   return request({
     url: url,

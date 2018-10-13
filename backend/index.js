@@ -17,8 +17,8 @@ app.get("/get-location", async (req, res) => {
   const listOfHouses = await immoweb.getClassifieds(inputCoordinates);
 
   // filter those without geopoint
-  const filtered = listOfHouses.filter(h =>
-    h.property.location.hasOwnProperty("geoPoint")
+  const filtered = listOfHouses.filter(item =>
+    item.property.location.hasOwnProperty("geoPoint")
   );
 
   const promiseFiltered = filtered.map(async item => {
@@ -39,13 +39,33 @@ app.get("/get-location", async (req, res) => {
         "walking"
       )
     };
+
+    const detailedItem = await immoweb.getInformations(item.id);
+
+    if (detailedItem.property.hasOwnProperty("description"))
+      item.description = detailedItem.property.description;
+    else if (detailedItem.property.alternativeDescriptions.hasOwnProperty("en"))
+      item.description = detailedItem.property.alternativeDescriptions.en;
+    else if (detailedItem.property.alternativeDescriptions.hasOwnProperty("fr"))
+      item.description = detailedItem.property.alternativeDescriptions.fr;
+    else if (detailedItem.property.alternativeDescriptions.hasOwnProperty("nl"))
+      item.description = detailedItem.property.alternativeDescriptions.nl;
+
+    if (item.transaction.hasOwnProperty("sale"))
+      item.price = item.transaction.sale.price;
+    else if (item.transaction.hasOwnProperty("rental"))
+      item.price = item.transaction.rental.monthlyRentalPrice;
+    else item.price = "-1";
+
     return item;
   });
-  const results = await Promise.all(promiseFiltered);
 
+  const results = await Promise.all(promiseFiltered);
   const cleanResults = results
     // only include those that we can find a route to
     .filter(item => item.travelDuration != "-1")
+    // only include those that we can find a price to
+    .filter(item => item.price != "-1") // TODO do we ?
     // sort them by lowest travelroute
     .sort(
       (a, b) =>
@@ -58,5 +78,5 @@ app.get("/get-location", async (req, res) => {
 
 app.listen(3000, () => {
   // eslint-disable-next-line no-console
-  console.log("Example app listening on port 3000!");
+  console.log("App listening on port 3000!");
 });

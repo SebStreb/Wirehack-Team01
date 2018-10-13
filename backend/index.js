@@ -48,6 +48,16 @@ app.get("/get-location", async (req, res) => {
         inputCoordinates,
         itemCoordinates,
         "walking"
+      ),
+      transit: await google.getDuration(
+        inputCoordinates,
+        itemCoordinates,
+        "transit"
+      ),
+      bicycling: await google.getDuration(
+        inputCoordinates,
+        itemCoordinates,
+        "bicycling"
       )
     };
 
@@ -86,21 +96,23 @@ app.get("/get-location", async (req, res) => {
   });
 
   const results = await Promise.all(promiseFiltered);
-  const cleanResults = results
-    // only include those that we can find a route to
-    .filter(item => item.travelDuration != "-1")
-    // only include those where the duration is not too long
-    .filter(item => parseInt(item.travelDuration.driving) < maxWait * 60)
-    // only include those that we can find a price to
-    //.filter(item => item.price != "-1") // TODO do we ?
-    // sort them by lowest travelroute
-    .sort(
-      (a, b) =>
-        parseInt(a.travelDuration.driving, 10) -
-        parseInt(b.travelDuration.driving, 10)
-    );
 
-  return res.send(cleanResults);
+  //TODO make all that in the frontend
+  //const cleanResults = results
+  // only include those that we can find a route to
+  //.filter(item => item.travelDuration != "-1")
+  // only include those where the duration is not too long
+  //.filter(item => parseInt(item.travelDuration.driving) < maxWait * 60)
+  // only include those that we can find a price to
+  //.filter(item => item.price != "-1") // TODO do we ?
+  // sort them by lowest travelroute
+  //.sort(
+  //  (a, b) =>
+  //    parseInt(a.travelDuration.driving, 10) -
+  //    parseInt(b.travelDuration.driving, 10)
+  //);
+
+  return res.send(results);
 });
 
 app.listen(3000, () => {

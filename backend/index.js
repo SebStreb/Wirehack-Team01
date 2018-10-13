@@ -114,14 +114,14 @@ app.get("/get-location", (req, res) => {
 					url: 'http://localhost:3000/duration?' + querystring.stringify(params)
 				}, (error, response, body) => {
 					if (error) logError(error, response)
-					console.log(body)
 					item.travelDuration = body
+					callback(null, item)
 				})
 				// one we have it put it in result, and execute the callback function
-				callback(null, item)
-			}, function(error, allResults) {
+				
+			}, function(error, filtered) {
 				// the last function will get all results
-				res.send(allResults)
+				res.send(filtered)
 			})
 		})
 	})

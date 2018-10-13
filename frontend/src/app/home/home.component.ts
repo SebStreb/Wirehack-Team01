@@ -11,6 +11,10 @@ import { ImmoWebService } from '@app/immoweb.service';
 })
 export class HomeComponent implements OnInit, OnChanges {
   workLocation: string;
+  housingType: string;
+  rentOrBuy: string;
+  maxPrice: number;
+  minBedroom = 1;
   maxDuration = 40;
   houses: any[];
 

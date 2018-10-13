@@ -22,6 +22,43 @@
           </label>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-row">
+            <span translate>Housing type</span>
+            <select [(ngModel)]="housingType"
+                   class="form-control housingType" required>
+                    <option value="HOUSE,APARTMENT" selected>House or appartment</option>
+                   <option value="APARTMENT">Apartment</option>
+                   <option value="HOUSE">House</option>
+            </select>
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-row">
+            <span translate>Maximum price</span>
+            <input type="number" [(ngModel)]="maxPrice" class="form-control durationInput"/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-row">
+            <span translate>Rent or buy</span>
+            <select [(ngModel)]="rentOrBuy"
+                   class="form-control rentOrBuy" required>
+                    <option value="FOR_SALE" selected>Rent</option>
+                   <option value="FOR_RENT">Buy</option>
+            </select>
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-row">
+            <span translate>Minimum number of bedrooms</span>
+            <input type="number" [(ngModel)]="minBedroom" class="form-control minBedroom"/>
+          </label>
+        </div>
+      </div>
       <button class="btn btn-primary" type="submit" (click)="search()">
         <span translate>Search</span>
       </button>

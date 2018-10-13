@@ -3,6 +3,10 @@ const https = require("https");
 const express = require("express");
 const querystring = require("querystring");
 var request = require("request");
+const polyline = require('@mapbox/polyline');
+
+	//Line to encode lat/long in Google :
+	//console.log(polyline.encode([[50.83711, 4.399754]]))
 
 const api = JSON.parse(fs.readFileSync("api.json"));
 

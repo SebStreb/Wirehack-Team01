@@ -18,20 +18,18 @@ describe('AuthenticationGuard', () => {
       providers: [
         AuthenticationGuard,
         { provide: AuthenticationService, useClass: MockAuthenticationService },
-        { provide: Router, useValue: mockRouter },
+        { provide: Router, useValue: mockRouter }
       ]
     });
   });
 
-  beforeEach(inject([
-    AuthenticationGuard,
-    AuthenticationService
-  ], (_authenticationGuard: AuthenticationGuard,
-      _authenticationService: MockAuthenticationService) => {
-
-    authenticationGuard = _authenticationGuard;
-    authenticationService = _authenticationService;
-  }));
+  beforeEach(inject(
+    [AuthenticationGuard, AuthenticationService],
+    (_authenticationGuard: AuthenticationGuard, _authenticationService: MockAuthenticationService) => {
+      authenticationGuard = _authenticationGuard;
+      authenticationService = _authenticationService;
+    }
+  ));
 
   it('should have a canActivate method', () => {
     expect(typeof authenticationGuard.canActivate).toBe('function');
@@ -49,7 +47,7 @@ describe('AuthenticationGuard', () => {
     const result = authenticationGuard.canActivate();
 
     // Assert
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/login'], {replaceUrl: true});
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/login'], { replaceUrl: true });
     expect(result).toBe(false);
   });
 });

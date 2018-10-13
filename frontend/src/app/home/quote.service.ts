@@ -14,8 +14,7 @@ export interface RandomQuoteContext {
 
 @Injectable()
 export class QuoteService {
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getRandomQuote(context: RandomQuoteContext): Observable<string> {
     return this.httpClient
@@ -27,4 +26,13 @@ export class QuoteService {
       );
   }
 
+  getLocationSuggestions(userLocation: string): Observable<any> {
+    return <Observable<any>>(
+      this.httpClient.get(
+        'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=' +
+          userLocation +
+          +'&inputtype=textquery&fields=formatted_address,geometry&key=AIzaSyBeJaZEr-xsTYyCoTISYxy1GrTN86dbouM'
+      )
+    );
+  }
 }

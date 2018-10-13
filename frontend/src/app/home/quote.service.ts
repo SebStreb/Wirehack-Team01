@@ -31,7 +31,7 @@ export class QuoteService {
       this.httpClient.get(
         'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=' +
           userLocation +
-          +'&inputtype=textquery&fields=formatted_address,geometry&key=AIzaSyBeJaZEr-xsTYyCoTISYxy1GrTN86dbouM'
+          '&inputtype=textquery&fields=formatted_address,geometry&key=AIzaSyBeJaZEr-xsTYyCoTISYxy1GrTN86dbouM'
       )
     );
   }

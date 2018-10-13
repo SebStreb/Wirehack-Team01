@@ -1,24 +1,30 @@
 <div class="container-fluid">
-  <div class="jumbotron text-center">
+  <div class="jumbotron">
     <h1>
-      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo"/>
-      <span translate>Hello world !</span>
+      <i class="fa fa-home"></i>
+      <span translate>Find houses near your work place</span>
     </h1>
 
-    <div class="container">
-      <div class="card col-md-6 mt-3 mx-auto">
-        <div class="card-body">
-          <form (ngSubmit)="save()" novalidate>
-            <div class="form-group">
-              <label class="d-block">
-                <input type="text" [(ngModel)]="workLocation"/>
-              </label>
-            </div>
-            <button id="save" class="save-button" (click)="save()">Zoek</button>
-          </form>
-        </div>
-      </div>
+    <div class="form-group">
+      <label class="form-row">
+        <span translate>Location</span>
+        <input type="text" [(ngModel)]="workLocation" [ngModelOptions]="{standalone: true}"
+               class="form-control locationInput" (change)="getSuggestions()" required/>
+      </label>
+      <label class="form-row durationRow">
+        <span translate>Maximum travel time (minutes)</span>
+        <input type="number" [ngModel]="maxDuration" class="form-control durationInput" required/>
+      </label>
+      <button class="btn btn-primary" type="submit">
+        <span translate>Search</span>
+      </button>
     </div>
-    <app-loader [isLoading]="isLoading"></app-loader>
+
+    <div class="card" *ngFor="let house of houses">
+      <p>{{house.Type}} {{house.Price}}<i class="fa fa-euro-sign"></i></p>
+      <p>{{house.City}} ({{house.PostalCode}})</p>
+      <p>{{house.Bedrooms}} bed.</p>
+      <p>{{house.Info}}</p>
+    </div>
   </div>
 </div>

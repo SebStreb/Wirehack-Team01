@@ -64,6 +64,10 @@
       </button>
     </div>
 
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+
     <h4>Results</h4>
     <div class="card" *ngFor="let house of houses">
       <div class="row">

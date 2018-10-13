@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit, OnChanges {
   minBedroom = 1;
   maxDuration = 40;
   houses: any[];
+  lat: number = 51.678418;
+  lng: number = 7.809007;
 
   constructor(private quoteService: QuoteService, private immoWebService: ImmoWebService) {}
 

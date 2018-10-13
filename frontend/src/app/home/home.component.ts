@@ -1,3 +1,4 @@
+import { ImmowebService } from './../immoweb.service';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
@@ -12,10 +13,10 @@ export class HomeComponent implements OnInit {
   quote: string;
   isLoading: boolean;
   workLocation: string;
-  maxDuration: number;
+  maxDuration: number = 40;
   houses: any[];
 
-  constructor(private quoteService: QuoteService) {}
+  constructor(private quoteService: QuoteService, private immowebService: ImmowebService) {}
 
   ngOnInit() {
     this.houses = [
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit {
         Bedrooms: 2,
         Size: 173,
         Price: 260000,
-        Duration: 30,
+        Duration: 20,
         Image: '../../assets/housie1.jpg',
         Info:
           "LORRAINE : Province de Luxembourg 6780 WOLKRANGE Jolie maison d'habitation de plain-pied 3 façades " +
@@ -48,7 +49,7 @@ export class HomeComponent implements OnInit {
         Type: 'Farmhouse',
         City: 'Ruddervoorde',
         PostalCode: 8020,
-        Bedsrooms: 3,
+        Bedrooms: 3,
         Size: 19000,
         Price: 1190000,
         Duration: 65,
@@ -74,7 +75,7 @@ export class HomeComponent implements OnInit {
   }
 
   getSuggestions() {
-    console.log(this.workLocation);
+    // this.immowebService.getAll('location', 20).subscribe((results: any) => this.houses = results);
     this.quoteService.getLocationSuggestions(this.workLocation).subscribe(result => {
       console.log(result);
     });
@@ -107,5 +108,15 @@ export class HomeComponent implements OnInit {
       }
     }
     return durationString;
+  }
+
+  getDurationCategory(duration: number) {
+    if (duration <= this.maxDuration * 0.5) {
+      return 'Good';
+    } else if (duration <= this.maxDuration) {
+      return 'Ok';
+    } else {
+      return 'Bad';
+    }
   }
 }

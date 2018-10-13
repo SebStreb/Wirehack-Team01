@@ -17,6 +17,14 @@ h1 {
   margin-bottom: 4rem;
 }
 
+.fa-home {
+  margin-right: 1rem;
+}
+
+.fa-euro-sign {
+  margin-right: 0.4rem;
+}
+
 .form-row {
   width: 45%;
   margin-right: 5%;
@@ -45,8 +53,16 @@ h1 {
   font-weight: bold;
 }
 
-.houseDuration {
+.houseDurationGood {
   color: #a3c791;
+}
+
+.houseDurationOk {
+  color: #c78857;
+}
+
+.houseDurationBad {
+  color: #c7494e;
 }
 
 .houseDetails,

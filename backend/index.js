@@ -36,17 +36,13 @@ app.get('/', function (req, res) {
 })
 
 // GET /get-location?input=Brussels
+const googlePlacesApi = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/';
 app.get("/get-location", (req, res) => {
-  if (req.query.input.length === 0) return res.send("please specify the input");
-  request(
-    "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
-      req.query.input +
-      "&inputtype=textquery&fields=formatted_address%2Cgeometry&key=" +
-      api.google_key,
-    function(error, response, body) {
+  if (!req.query.input || req.query.input.length === 0) return res.send("please specify the input");
+  request(`${googlePlacesApi}/json?input=${req.query.input}&inputtype=textquery&fields=formatted_address%2Cgeometry&key=${api.google_key}`, (error, response, body) => {
       if (error) {
-        console.log("error:", error); // Print the error if one occurred
-        console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+        console.log("error:", error);
+        console.log("statusCode:", response && response.statusCode);
       }
       res.send(body);
     }

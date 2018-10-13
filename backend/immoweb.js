@@ -16,6 +16,7 @@ exports.getClassifieds = async (coordinates) => {
         range: "0-30"
     };
 
+    if (api.debug) console.log('GET', api.immoweb_url + "/classifieds?" + querystring.stringify(params));
     return request({
         url: api.immoweb_url + "/classifieds?" + querystring.stringify(params),
         headers: {

@@ -20,12 +20,6 @@ exports.getClassifieds = async (
     geoSearchRadius: 10000,
     range: "0-5"
   };
-  // eslint-disable-next-line no-console
-  if (api.debug)
-    console.log(
-      "GET",
-      `${api.immoweb_url}/classifieds?${querystring.stringify(params)}`
-    );
   const url = `${api.immoweb_url}/classifieds?${querystring.stringify(params)}`;
 
   // eslint-disable-next-line no-console
@@ -36,7 +30,9 @@ exports.getClassifieds = async (
       "x-iw-api-key": api.immoweb_key,
       Accept: "application/vnd.be.immoweb.classifieds.v2.1+json"
     }
-  }).then(body => JSON.parse(body));
+  })
+    .then(body => JSON.parse(body))
+    .catch(err => []);
 };
 
 exports.getInformations = async classifiedID => {

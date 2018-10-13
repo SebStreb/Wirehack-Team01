@@ -29,8 +29,8 @@ app.get('/', function (req, res) {
 		}
 	}, function (error, response, body) {
 		if (error) console.log(error)
-		console.log(response)
-		console.log(body)
+		//console.log(response)
+		//console.log(body)
 		res.send(body)
 	})
 })
@@ -48,7 +48,29 @@ app.get("/get-location", (req, res) => {
         console.log("error:", error); // Print the error if one occurred
         console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
       }
-      res.send(body);
+      fullRequest = JSON.parse(body);
+      coordinates = [fullRequest.candidates[0].geometry.location.lat, fullRequest.candidates[0].geometry.location.lng];
+      const params = {
+		propertyTypes: 'HOUSE', //required
+		transactionTypes: 'FOR_RENT', //required
+		minBedroomCount: 2,
+		maxPrice: 1500,
+		geoSearchPoint: polyline.encode([coordinates]),
+		geoSearchRadius: 10000
+	}
+
+	request({
+		url: api.immoweb_url + '/classifieds?' + querystring.stringify(params),
+		headers: {
+			'x-iw-api-key': api.immoweb_key, //required
+			'Accept': 'application/vnd.be.immoweb.classifieds.v2.1+json' //required
+		}
+	}, function (error, response, body) {
+		if (error) console.log(error)
+		//console.log(response)
+		//console.log(body)
+		res.send(body)
+	})
     }
   );
 });

@@ -39,12 +39,14 @@ app.get('/test1', (req, res) => {
 	})
 })
 
-app.get("/test2", (req, res) => {
+// GET /duration?origin=XX.XX,XX.XX&dest=XX.XX,XX.XX&mode=XXXX
+// modes : driving, walking, bicycling, transit
+app.get("/duration", (req, res) => {
 	const params = {
 		key: api.google_key,
-		origin: '50.837166,4.399113',
-		destination: '50.837971,4.390824',
-		mode: 'driving',
+		origin: req.query.origin,
+		destination: req.query.dest,
+		mode: req.query.mode,
 		alternatives: false //we only need one route to get its time
 		//departure_time: TODO get timestamp for a random 8:00 in the future
 	}
@@ -53,8 +55,9 @@ app.get("/test2", (req, res) => {
 		url: api.google_url + '/directions/json?' + querystring.stringify(params)
 	}, function (error, response, body) {
 		if (error) logError(error, response)
-		console.log(body)
-		res.send(body)
+		const result = JSON.parse(body)
+		const duration = result.routes[0].legs[0].duration.value
+		res.send(duration + '')
 	})
 })
 

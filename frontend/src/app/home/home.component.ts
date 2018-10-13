@@ -16,7 +16,9 @@ export class HomeComponent implements OnInit, OnChanges {
   maxPrice: number;
   minBedroom = 1;
   maxDuration = 40;
-  houses: any[];
+  houses: any[] = [];
+  lat: number = 51.678418;
+  lng: number = 7.809007;
 
   constructor(private quoteService: QuoteService, private immoWebService: ImmoWebService) {}
 
@@ -48,7 +50,8 @@ export class HomeComponent implements OnInit, OnChanges {
             Price: item.price,
             Duration: item.travelDuration.driving,
             Image: item.media.pictures.baseUrl + item.media.pictures.items[0].relativeUrl.large,
-            Info: item.description
+            Info: item.description,
+            GeoPoint: item.property.location.geoPoint
           };
         });
         console.log(results);

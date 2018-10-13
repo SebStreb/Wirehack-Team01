@@ -4,6 +4,8 @@ const express = require('express')
 const querystring = require('querystring')
 const polyline = require('@mapbox/polyline')
 const async = require('async')
+var cors = require('cors')
+
 
 //Line to encode lat/long in Google :
 //console.log(polyline.encode([[50.83711, 4.399754]]))
@@ -11,6 +13,8 @@ const async = require('async')
 const api = JSON.parse(fs.readFileSync('api.json'))
 
 const app = express()
+app.options('*', cors()) // include before other routes
+
 
 function logError(error, response) {
 	console.error('error: ', error)

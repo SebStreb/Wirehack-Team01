@@ -14,9 +14,18 @@ export interface RandomQuoteContext {
 export class ImmoWebService {
   constructor(private httpClient: HttpClient) {}
 
-  getAll(userLocation: string, maxWait: number): Observable<any> {
+  getAll(
+    userLocation: string,
+    maxWait: number,
+    houseOrApp: string,
+    rentOrBuy: string,
+    minBed: number,
+    maxPrice: number
+  ): Observable<any> {
     return <Observable<any>>(
-      this.httpClient.get(`http://localhost:3000/get-location?input=${userLocation}&max=${maxWait}`)
+      this.httpClient.get(
+        `http://localhost:3000/get-location?input=${userLocation}&max=${maxWait}&houseApp=${houseOrApp}&rentBuy=${rentOrBuy}&minBed=${minBed}&maxPrice=${maxPrice}`
+      )
     );
   }
 }

@@ -12,9 +12,20 @@ app.get("/get-location", async (req, res) => {
   if (!req.query.input || req.query.input.length === 0)
     return res.send("please specify the input");
   const input = req.query.input;
+  const houseOrApp = req.query.houseApp;
+  const rentOrBuy = req.query.rentBuy;
+  const minBedroom = req.query.minBed;
+  const maxPrice = req.query.maxPrice;
+  console.log(houseOrApp + " " + rentOrBuy + " " + minBedroom + " " + maxPrice);
 
   const inputCoordinates = await google.getCoordinatesFromText(input);
-  const listOfHouses = await immoweb.getClassifieds(inputCoordinates);
+  const listOfHouses = await immoweb.getClassifieds(
+    inputCoordinates,
+    houseOrApp,
+    rentOrBuy,
+    maxPrice,
+    minBedroom
+  );
 
   // filter those without geopoint
   const filtered = listOfHouses.filter(item =>

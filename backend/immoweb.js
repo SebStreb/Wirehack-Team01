@@ -4,16 +4,28 @@ const polyline = require("@mapbox/polyline");
 const api = require("./api.json");
 
 // coordinates is a [latitude, longitude]
-exports.getClassifieds = async coordinates => {
+exports.getClassifieds = async (
+  coordinates,
+  properType,
+  transaType,
+  minCount,
+  maxPrice
+) => {
   const params = {
-    propertyTypes: "HOUSE", // required
-    transactionTypes: "FOR_RENT", // required
-    minBedroomCount: 2,
-    maxPrice: 1500,
+    propertyTypes: properType, // required
+    transactionTypes: transaType, // required
+    minBedroomCount: minCount,
+    maxPrice: maxPrice,
     geoSearchPoint: polyline.encode([coordinates]),
     geoSearchRadius: 10000,
     range: "0-30"
   };
+  // eslint-disable-next-line no-console
+  if (api.debug)
+    console.log(
+      "GET",
+      `${api.immoweb_url}/classifieds?${querystring.stringify(params)}`
+    );
   const url = `${api.immoweb_url}/classifieds?${querystring.stringify(params)}`;
 
   // eslint-disable-next-line no-console

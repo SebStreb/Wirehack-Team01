@@ -116,20 +116,23 @@
                   {{house.Size}} m^2</p>
               </div>
               <div class="col-md-3 text-right">
-                <p class="houseDuration{{getDurationCategory(house.Duration)}}">{{getDurationString(house.Duration)}}</p>
-                <!-- show the lowest, and the one that is selected -->
-                <p><i class="fa fa-walking"></i> {{getDurationString(house.TravelDuration.walking)}}</p>
-                <p><i class="fa fa-car"></i> {{getDurationString(house.TravelDuration.driving)}}</p>
-                <p><i class="fa fa-bus"></i> {{getDurationString(house.TravelDuration.transit)}}</p>
-                <p class="housePrice"><i class="fa fa-euro-sign"></i> {{getPriceString(house.Price)}}</p>
-                <p><a (click)="getDirFor(house)">directions</a></p>
+                  <p class="housePrice"><i class="fa fa-euro-sign"></i> {{getPriceString(house.Price)}}</p>
               </div>
+
             </div>
             <p class="houseInfo text-justify">{{house.Info}}</p>
             <p class="houseLink text-justify"><a href="https://www.immoweb.be/en/ad/{{house.PropertyType}}/{{house.TransactionType}}/{{house.City}}/{{house.PostalCode}}/id{{house.Id}}"
                 target="_blank">www.immoweb.be</a></p>
           </div>
         </div>
+        <div class="row text-left">
+            <!-- show the lowest, and the one that is selected -->
+          <div class="col-md-2"><p><i class="fa fa-walking"></i> {{getDurationString(house.TravelDuration.walking)}}</p></div>
+          <div class="col-md-2"><p><i class="fa fa-bicycle"></i> {{getDurationString(house.TravelDuration.bicycling)}}</p></div>
+          <div class="col-md-2"><p><i class="fa fa-car"></i> {{getDurationString(house.TravelDuration.driving)}}</p></div>
+          <div class="col-md-2"><p><i class="fa fa-bus"></i> {{getDurationString(house.TravelDuration.transit)}}</p></div>
+        </div>
+        <p><a (click)="getDirFor(house)">directions</a></p>
       </div>
     </div>
   </div>

@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit, OnChanges {
   otherLocation: string;
   housingType = 'HOUSE,APARTMENT';
   rentOrBuy = 'FOR_RENT';
-  maxPrice = 900;
-  minBedroom = 1;
+  maxPrice: number;
+  minBedroom: number;
   maxDuration = 40;
   houses: any[] = [];
   lat = 50.8063939;
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit, OnChanges {
       { item_id: 'transit', item_text: 'Public transport' },
       { item_id: 'walking', item_text: 'Walking' }
     ];
-    this.selectedTransportMethodItems = [{ item_id: 'transit', item_text: 'Public transport' }];
+    this.selectedTransportMethodItems = [];
     this.dropdownTransportMethodSettings = {
       singleSelection: true,
       idField: 'item_id',

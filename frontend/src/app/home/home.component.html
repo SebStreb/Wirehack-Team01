@@ -142,10 +142,10 @@
             <p class="houseInfo text-justify">{{house.Info}}</p>
             <p class="houseLink text-justify"><a
               href="https://www.immoweb.be/en/ad/{{house.PropertyType}}/{{house.TransactionType}}/{{house.City}}/{{house.PostalCode}}/id{{house.Id}}"
-              target="_blank">www.immoweb.be</a></p>
+              target="_blank">View on IMMOWEB</a></p>
           </div>
         </div>
-        <div class="row text-left durations transport-modes">
+        <div class="row text-center durations transport-modes">
           <div class="col" *ngFor="let travelDuration of house.Travel.selected">
             <p><i class="{{travelDuration.iconClass}}"></i> {{getDurationString(travelDuration.duration)}}</p>
           </div>
@@ -154,7 +154,7 @@
               {{getDurationString(travelDuration.duration)}}</p>
           </div>
         </div>
-        <p><a (click)="getDirFor(house)">directions</a></p>
+        <!--<p><a (click)="getDirFor(house)">directions</a></p>-->
       </div>
     </div>
   </div>

@@ -8,6 +8,15 @@ const app = express();
 app.use(cors());
 
 // GET /get-location?input=Brussels
+app.get("/get-coordinates", async (req, res) => {
+  if (!req.query.input || req.query.input.length === 0)
+    return res.send("please specify the input");
+  const input = req.query.input;
+  const inputCoordinates = await google.getCoordinatesFromText(input);
+  res.send(inputCoordinates);
+});
+
+// GET /get-location?input=Brussels
 app.get("/get-location", async (req, res) => {
   if (!req.query.input || req.query.input.length === 0)
     return res.send("please specify the input");

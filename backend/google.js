@@ -27,8 +27,11 @@ exports.getDuration = async (origin, destination, mode) => {
     return "-1";
   });
 };
-
+const getCoordinatesFromTextCache = {};
 exports.getCoordinatesFromText = async input => {
+  if (typeof getCoordinatesFromTextCache[input] !== 'undefined') {
+    return getCoordinatesFromTextCache[input];
+  }
   const params = {
     input,
     inputtype: "textquery",
@@ -43,9 +46,11 @@ exports.getCoordinatesFromText = async input => {
   if (api.debug) console.log("GET", url);
   return request(url).then(body => {
     const parsed = JSON.parse(body);
-    return [
+    const coordinates = [
       parsed.candidates[0].geometry.location.lat,
       parsed.candidates[0].geometry.location.lng
     ];
+    getCoordinatesFromTextCache[input] = coordinates;
+    return coordinates;
   });
 };

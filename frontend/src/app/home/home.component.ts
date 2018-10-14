@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
 import { QuoteService } from './quote.service';
@@ -12,14 +12,19 @@ import { ImmoWebService } from '@app/immoweb.service';
 export class HomeComponent implements OnInit, OnChanges {
   workLocation: string;
   otherLocation: string;
-  housingType: string;
-  rentOrBuy: string;
+  housingType = 'HOUSE,APARTMENT';
+  rentOrBuy = 'FOR_SALE';
   maxPrice: number;
   minBedroom = 1;
   maxDuration = 40;
   houses: any[] = [];
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat = 50.8063939;
+  lng = 4.3151967;
+
+  work_lat = 50.8063939;
+  work_lng = 4.3151967;
+
+  @ViewChild('results') ResultsProp: ElementRef;
 
   constructor(private quoteService: QuoteService, private immoWebService: ImmoWebService) {}
 
@@ -34,8 +39,19 @@ export class HomeComponent implements OnInit, OnChanges {
       console.log(result);
     });
   }
+  center(house: any) {
+    this.lat = house.GeoPoint.latitude;
+    this.lng = house.GeoPoint.longitude;
+  }
 
   search() {
+    this.immoWebService
+      .getCenter(this.workLocation)
+      .subscribe((results: any) => {
+        console.log('center is', results);
+        this.work_lat = results[0];
+        this.work_lng = results[1];
+      });
     this.immoWebService
       .getAll(
         this.workLocation,
@@ -64,6 +80,10 @@ export class HomeComponent implements OnInit, OnChanges {
           };
         });
         console.log(results);
+      }, error => {
+        console.error('error loading', error);
+      }, () => {
+        this.ResultsProp.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
   }
 

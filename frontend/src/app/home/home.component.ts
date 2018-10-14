@@ -105,19 +105,18 @@ export class HomeComponent implements OnInit, OnChanges {
         (results: any) => {
           this.houses = results.map((item: any) => {
             return {
-              Id: item.id, //
-              PropertyType: item.propertyType, //
-              LocationType: item.transactionType, //
-              City: item.city, //
-              PostalCode: item.postalCode, //
-              Bedrooms: item.bedrooms, //
-              Size: item.surface, //
-              Price: item.price, //
-              Duration: item.travelDuration[0].driving,
-              TravelDuration: item.travelDuration[0],
-              Image: item.image, //
-              Info: item.description, //
-              GeoPoint: item.geoPoint //
+              Id: item.id,
+              PropertyType: item.propertyType,
+              LocationType: item.transactionType,
+              City: item.city,
+              PostalCode: item.postalCode,
+              Bedrooms: item.bedrooms,
+              Size: item.surface,
+              Price: item.price,
+              Travel: item.travels[0],
+              Image: item.image,
+              Info: item.description,
+              GeoPoint: item.geoPoint
             };
           });
           console.log(results);

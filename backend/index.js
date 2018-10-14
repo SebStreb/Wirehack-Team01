@@ -113,7 +113,7 @@ app.get('/get-location', async (req, res) => {
     result.travelDuration = [];
     for await (const coordinates of allCoordinates) {
       const res = await google.getDuration(coordinates, houseCoordinates);
-      result.travelDuration.push(res);
+      result.travels.push(res);
     }
 
     results.push(result);

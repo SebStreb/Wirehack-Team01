@@ -69,12 +69,13 @@
   <div *ngIf="noResults">No Results Found</div>
   <div #results class="row" *ngIf="houses.length">
     <div class="map col-md-6">
+      <iframe *ngIf="currentDir" width="100%" height="80vh" [src]="currentDir"></iframe>
       <agm-map style="height: 80vh" [latitude]=lat [longitude]=lng [zoom]=12>
         <agm-marker [latitude]=work_lat [longitude]=work_lng [iconUrl]="'assets/work.png'"></agm-marker>
         <agm-marker *ngFor="let house of houses" [latitude]=house.GeoPoint.latitude [longitude]=house.GeoPoint.longitude>
           <agm-snazzy-info-window [maxWidth]="500" [closeWhenOthersOpen]="true">
             <ng-template>
-              <p style="width: 200px" class="houseDetails" (click)="center(house)">{{house.City}}
+              <p style="width: 200px" class="houseDetails">{{house.City}}
                 ({{house.PostalCode}}),
                 {{house.Bedrooms}} bedrooms</p>
               <p class="houseType">{{house.Type}}</p>
@@ -87,7 +88,15 @@
       </agm-map>
     </div>
     <div class="results col-md-6" style="height: 80vh; overflow-y: auto">
-      <div class="card" *ngFor="let house of houses">
+      <p style="text-align: right">
+        sort by
+        <!-- sorting can be done in frontend -->
+        <select>
+          <option>Drive</option>
+          <option>Walk</option>
+        </select>
+      </p>
+      <div class="card" *ngFor="let house of houses" (click)="center(house)">
         <div class="row">
           <div class="col-md-4">
             <img class="houseImage" src="{{house.Image}}" />
@@ -101,7 +110,12 @@
               </div>
               <div class="col-md-3 text-right">
                 <p class="houseDuration{{getDurationCategory(house.Duration)}}">{{getDurationString(house.Duration)}}</p>
+                <!-- show the lowest, and the one that is selected -->
+                <p><i class="fa fa-walking"></i> {{getDurationString(house.TravelDuration.walking)}}</p>
+                <p><i class="fa fa-car"></i> {{getDurationString(house.TravelDuration.driving)}}</p>
+                <p><i class="fa fa-bus"></i> {{getDurationString(house.TravelDuration.transit)}}</p>
                 <p class="housePrice"><i class="fa fa-euro-sign"></i> {{getPriceString(house.Price)}}</p>
+                <p><a (click)="getDirFor(house)">directions</a></p>
               </div>
             </div>
             <p class="houseInfo text-justify">{{house.Info}}</p>

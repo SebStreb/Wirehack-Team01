@@ -1,8 +1,10 @@
 import { Component, OnChanges, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
+
 import { QuoteService } from './quote.service';
 import { ImmoWebService } from '@app/immoweb.service';
+
 
 @Component({
   selector: 'app-home',
@@ -26,6 +28,8 @@ export class HomeComponent implements OnInit, OnChanges {
   work_lat = 50.8063939;
   work_lng = 4.3151967;
 
+  currentDir = '';
+
   @ViewChild('results') ResultsProp: ElementRef;
 
   constructor(private quoteService: QuoteService, private immoWebService: ImmoWebService) {}
@@ -46,6 +50,11 @@ export class HomeComponent implements OnInit, OnChanges {
     this.lng = house.GeoPoint.longitude;
   }
 
+  getDirFor(house: any) {
+    this.currentDir = `http://maps.google.com/maps?saddr=${this.work_lat},${this.work_lng}&daddr=${house.GeoPoint.latitude},${house.GeoPoint.longitude}`;
+  }
+
+
   search() {
     this.loading = true;
     this.noResults = false;
@@ -55,6 +64,8 @@ export class HomeComponent implements OnInit, OnChanges {
         console.log('center is', results);
         this.work_lat = results[0];
         this.work_lng = results[1];
+        this.lat = results[0];
+        this.lng = results[1];
       });
     this.immoWebService
       .getAll(
@@ -78,6 +89,7 @@ export class HomeComponent implements OnInit, OnChanges {
             Size: item.surface,
             Price: item.price,
             Duration: item.travelDuration.driving,
+            TravelDuration: item.travelDuration,
             Image: item.media.pictures.baseUrl + item.media.pictures.items[0].relativeUrl.large,
             Info: item.description,
             GeoPoint: item.property.location.geoPoint

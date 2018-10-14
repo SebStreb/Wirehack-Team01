@@ -145,14 +145,11 @@
           </div>
         </div>
         <div class="row text-left">
-          <!-- show the lowest, and the one that is selected -->
-          <div class="col-md-2"><p><i class="fa fa-walking"></i> {{getDurationString(house.TravelDuration.walking)}}</p>
+          <div class="col-md-2" *ngFor="let travelDuration of house.TravelDuration.selected">
+            <p><i class="{{travelDuration.iconClass}}"></i> {{getDurationString(travelDuration.duration)}}</p>
           </div>
-          <div class="col-md-2"><p><i class="fa fa-bicycle"></i> {{getDurationString(house.TravelDuration.bicycling)}}
-          </p></div>
-          <div class="col-md-2"><p><i class="fa fa-car"></i> {{getDurationString(house.TravelDuration.driving)}}</p>
-          </div>
-          <div class="col-md-2"><p><i class="fa fa-bus"></i> {{getDurationString(house.TravelDuration.transit)}}</p>
+          <div class="col-md-2" *ngFor="let travelDuration of house.TravelDuration.other">
+            <p><i class="{{travelDuration.iconClass}}"></i> {{getDurationString(travelDuration.duration)}}</p>
           </div>
         </div>
         <p><a (click)="getDirFor(house)">directions</a></p>

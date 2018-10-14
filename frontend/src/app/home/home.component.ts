@@ -32,9 +32,6 @@ export class HomeComponent implements OnInit, OnChanges {
   selectedTransportMethodItems: any[] = [];
   dropdownTransportMethodSettings = {};
 
-  preferredDurations: any[];
-  otherDurations: any[];
-
   work_lat = 50.8063939;
   work_lng = 4.3151967;
 
@@ -158,13 +155,39 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   getTravelDurationByPreference(travelDuration: any) {
-    this.selectedTransportMethodItems.forEach(transportMethod => {
-      this.preferredDurations.push({
-        method: transportMethod.item_id,
-        duration: travelDuration[transportMethod.item_id]
+    const travelDurationWithSelection: any = {
+      selected: [],
+      other: []
+    };
+    this.dropdownTransportMethodList.forEach(transportMethod => {
+      this.selectedTransportMethodItems.forEach(selectedTransportMethod => {
+        if (transportMethod.item_id === selectedTransportMethod.item_id) {
+          travelDurationWithSelection.selected.push({
+            iconClass: this.getIcon(transportMethod.item_id),
+            duration: travelDuration[transportMethod.item_id]
+          });
+        } else {
+          travelDurationWithSelection.other.push({
+            iconClass: this.getIcon(transportMethod.item_id),
+            duration: travelDuration[transportMethod.item_id]
+          });
+        }
       });
     });
-    console.log(this.preferredDurations);
+    return travelDurationWithSelection;
+  }
+
+  getIcon(transportMethod: string) {
+    switch (transportMethod) {
+      case 'bicycling':
+        return 'fa fa-bicycle';
+      case 'walking':
+        return 'fa fa-walking';
+      case 'transit':
+        return 'fa fa-bus';
+      case 'driving':
+        return 'fa fa-car';
+    }
   }
 
   getPriceString(price: number) {

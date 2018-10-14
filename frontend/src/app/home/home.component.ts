@@ -203,7 +203,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
   getDurationString(duration: number) {
     duration = (duration - (duration % 60)) / 60;
-    let durationString = '~ ';
+    let durationString = '';
     if (duration < 60) {
       durationString += duration + 'm';
     } else {

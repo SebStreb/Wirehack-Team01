@@ -10,9 +10,8 @@
         <div class="col-md-6">
           <label class="form-row">
             <span translate>Work location</span>
-            <input type="text" [(ngModel)]="workLocation" [ngModelOptions]="{standalone: true}"
-                   class="form-control locationInput"
-                   required autofocus/>
+            <input type="text" [(ngModel)]="workLocation" [ngModelOptions]="{standalone: true}" class="form-control locationInput" (keydown.enter)="search()"
+              required autofocus/><br>
           </label>
         </div>
         <div class="col-md-6">
@@ -144,13 +143,18 @@
               target="_blank">www.immoweb.be</a></p>
           </div>
         </div>
-        <div class="row text-left">
-          <div class="col-md-2" *ngFor="let travelDuration of house.Travel.selected">
-            <p><i class="{{travelDuration.iconClass}}"></i> {{getDurationString(travelDuration.duration)}}</p>
+        <div class="row text-center transport-modes">
+            <!-- show the lowest, and the one that is selected -->
+          <div class="col-md-3"><p><i class="fa fa-walking"></i> {{getDurationString(house.TravelDuration.walking)}}</p></div>
+          <div class="col-md-3">
+            <p class="faster">
+              <i class="fa fa-bicycle"></i>
+              {{getDurationString(house.TravelDuration.bicycling)}}
+              <img src="assets/medal.ico" height="20"/>
+            </p>
           </div>
-          <div class="col-md-2" *ngFor="let travelDuration of house.Travel.other">
-            <p><i class="{{travelDuration.iconClass}}"></i> {{getDurationString(travelDuration.duration)}}</p>
-          </div>
+          <div class="col-md-3"><p><i class="fa fa-car"></i> {{getDurationString(house.TravelDuration.driving)}}</p></div>
+          <div class="col-md-3"><p><i class="fa fa-bus"></i> {{getDurationString(house.TravelDuration.transit)}}</p></div>
         </div>
         <p><a (click)="getDirFor(house)">directions</a></p>
       </div>

@@ -104,3 +104,24 @@ h1 {
     background: #337ab7;
   }
 }
+.transport-modes {
+  text-align: center;
+  font-size: 1.6em;
+  color: gray;
+}
+.transport-modes > :first-child {
+  color: black;
+}
+.transport-modes .faster {
+  color: #10ab10;
+}
+.transport-modes > div {
+  cursor: pointer;
+}
+
+.transport-modes > div:hover {
+  box-shadow: 0 0 3px gray;
+}
+.fastest-indicator {
+  margin-top: -12px;
+}

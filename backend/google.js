@@ -25,7 +25,7 @@ exports.getDuration = async (origin, destination) => {
       const parsed = JSON.parse(body);
       if (parsed.routes.length > 0) result[mode] = {
         duration: parsed.routes[0].legs[0].duration.value,
-        instructions: paresed.routes[0].legs[0].steps.map(step => `<p>${step.html_instructions}</p>`).join('\n')
+        instructions: parsed.routes[0].legs[0].steps.map(step => `<p>${step.html_instructions}</p>`).join('\n')
       };
       else result[mode] = {duration: "-1", instructions: "<p>No direction found</p>"};
     });

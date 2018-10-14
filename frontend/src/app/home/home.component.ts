@@ -105,7 +105,6 @@ export class HomeComponent implements OnInit, OnChanges {
     this.loading = true;
     this.noResults = false;
     this.immoWebService.getCenter(this.workLocation).subscribe((results: any) => {
-      console.log('center is', results);
       this.work_lat = results[0];
       this.work_lng = results[1];
       this.lat = results[0];
@@ -142,7 +141,6 @@ export class HomeComponent implements OnInit, OnChanges {
               GeoPoint: item.geoPoint
             };
           });
-          console.log(results);
         },
         error => {
           console.error('error loading', error);
@@ -156,11 +154,11 @@ export class HomeComponent implements OnInit, OnChanges {
       );
   }
 
-  getTravelDurationByPreference(travelDuration: any) {
+  getTravelDurationByPreference(travel: any) {
     this.selectedTransportMethodItems.forEach(transportMethod => {
       this.preferredDurations.push({
         method: transportMethod.item_id,
-        duration: travelDuration[transportMethod.item_id]
+        duration: travel[transportMethod.item_id].duration
       });
     });
     console.log(this.preferredDurations);

@@ -103,6 +103,9 @@ export class HomeComponent implements OnInit, OnChanges {
       )
       .subscribe(
         (results: any) => {
+          if (results.length == 0) {
+            this.noResults = true;
+          }
           this.houses = results.map((item: any) => {
             return {
               Id: item.id, //

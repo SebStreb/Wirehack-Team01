@@ -1,5 +1,4 @@
-import { Component, OnChanges, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { finalize } from 'rxjs/operators';
+import { Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
 
 import { QuoteService } from './quote.service';
 import { ImmoWebService } from '@app/immoweb.service';
@@ -102,7 +101,6 @@ export class HomeComponent implements OnInit, OnChanges {
     this.loading = true;
     this.noResults = false;
     this.immoWebService.getCenter(this.workLocation).subscribe((results: any) => {
-      console.log('center is', results);
       this.work_lat = results[0];
       this.work_lng = results[1];
       this.lat = results[0];
@@ -125,22 +123,20 @@ export class HomeComponent implements OnInit, OnChanges {
           }
           this.houses = results.map((item: any) => {
             return {
-              Id: item.id, //
-              PropertyType: item.propertyType, //
-              LocationType: item.transactionType, //
-              City: item.city, //
-              PostalCode: item.postalCode, //
-              Bedrooms: item.bedrooms, //
-              Size: item.surface, //
-              Price: item.price, //
-              Duration: item.travelDuration[0].driving,
-              TravelDuration: this.getTravelDurationByPreference(item.travelDuration[0]),
-              Image: item.image, //
-              Info: item.description, //
-              GeoPoint: item.geoPoint //
+              Id: item.id,
+              PropertyType: item.propertyType,
+              LocationType: item.transactionType,
+              City: item.city,
+              PostalCode: item.postalCode,
+              Bedrooms: item.bedrooms,
+              Size: item.surface,
+              Price: item.price,
+              Travel: this.getTravelDurationByPreference(item.travels[0]),
+              Image: item.image,
+              Info: item.description,
+              GeoPoint: item.geoPoint
             };
           });
-          console.log(results);
         },
         error => {
           console.error('error loading', error);

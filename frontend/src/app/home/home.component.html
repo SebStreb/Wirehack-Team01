@@ -145,10 +145,10 @@
           </div>
         </div>
         <div class="row text-left">
-          <div class="col-md-2" *ngFor="let travelDuration of house.TravelDuration.selected">
+          <div class="col-md-2" *ngFor="let travelDuration of house.Travel.selected">
             <p><i class="{{travelDuration.iconClass}}"></i> {{getDurationString(travelDuration.duration)}}</p>
           </div>
-          <div class="col-md-2" *ngFor="let travelDuration of house.TravelDuration.other">
+          <div class="col-md-2" *ngFor="let travelDuration of house.Travel.other">
             <p><i class="{{travelDuration.iconClass}}"></i> {{getDurationString(travelDuration.duration)}}</p>
           </div>
         </div>

@@ -76,3 +76,12 @@ h1 {
   line-height: 1.5; /* fallback */
   max-height: 8.8em; /* fallback */
 }
+.form-multi-select {
+  display: block;
+  background: white;
+  width: 100%;
+  border-radius: 0.25rem;
+}
+.multiselect-dropdown .dropdown-btn {
+  border: none;
+}

@@ -1,0 +1,565 @@
+[
+  {
+    "customers": [{ "publicInfo": { "name": "Rent@studentflat.be" } }],
+    "flagsAndStatistics": {
+      "flags": {
+        "isALifeAnnuitySale": false,
+        "isANewlyPublishedClassified": false,
+        "isAPublicSale": false,
+        "isNewlyBuilt": false
+      }
+    },
+    "id": 6556683,
+    "media": {
+      "pictures": {
+        "items": [
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "6556683_1.jpg?cache=20170406080939",
+              "medium": "M_6556683_1.jpg?cache=20170406080939",
+              "small": "6556683_1.gif?cache=20170406080939"
+            }
+          },
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "6556683_2.jpg?cache=20170406080940",
+              "medium": "M_6556683_2.jpg?cache=20170406080941",
+              "small": "6556683_2.gif?cache=20170406080941"
+            }
+          },
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "6556683_3.jpg?cache=20170406080942",
+              "medium": "M_6556683_3.jpg?cache=20170406080942",
+              "small": "6556683_3.gif?cache=20170406080942"
+            }
+          }
+        ],
+        "baseUrl": "https://static.immoweb.be/photos/0/6/5/5/6/6/8/3/"
+      }
+    },
+    "property": {
+      "bedroom": { "count": 1 },
+      "location": {
+        "address": {
+          "country": "Belgium",
+          "district": "Leuven",
+          "locality": "Leuven",
+          "number": "1",
+          "postalCode": "3000",
+          "propertyName": "Archiv 0.1",
+          "province": "Flemish Brabant",
+          "region": "Flanders",
+          "regionCode": "FLANDERS",
+          "street": "Remi Vandervaerenlaan"
+        },
+        "geoPoint": { "latitude": 50.8751905, "longitude": 4.6931519 }
+      },
+      "subtype": "FLAT_STUDIO",
+      "title": "Beautiful furnished student studios for rent",
+      "alternativeTitles": { "nl": "Prachtige, gemeubelde studentenstudio's." },
+      "type": "APARTMENT"
+    },
+    "publication": {
+      "lastModificationDate": "2016-08-17T15:47:06.237+0000",
+      "visualisationOption": "XL"
+    },
+    "transaction": {
+      "certificates": {
+        "epc": {
+          "score": "A++",
+          "logoUrl": "https://static.immoweb.be/en/pics/fla/big/0.gif"
+        }
+      },
+      "rental": { "monthlyRentalPrice": 490 },
+      "segment": "RESIDENTIAL",
+      "soldOrRented": { "isSoldOrRented": false },
+      "subtype": "RENT_REGULAR",
+      "type": "FOR_RENT"
+    },
+    "travelDuration": {
+      "driving": "499",
+      "walking": "658",
+      "transit": "626",
+      "bicycling": "186"
+    },
+    "description": "Well-located furnished student studios in a renovated building. Each studio is built with high quality materials, furnished and ready for use. They have their own bathroom (shower, sink and toilet), a furnished kitchen area with microwave oven, fridge and ceramic cooking plates. There is a communal terrace outside and a covered and locked bicycle storage. \r\n\r\nRental prices start at €490 per month, a yearly cost of €840 for general expenses including maintenance and cleaning of communal spaces, internet, garbage disposal, student tax, insurance etc, and a €40 monthly provision for the private use of gas, water and electricity which will be calculated using individual counters. Only for students!\r\nCall or e-mail for a visit to our model studio: rent@studentflat.be - 0499/882027",
+    "price": 490,
+    "surface": "-1",
+    "bedrooms": 1
+  },
+  {
+    "customers": [{ "publicInfo": { "name": "Rent@studentflat.be" } }],
+    "flagsAndStatistics": {
+      "flags": {
+        "isALifeAnnuitySale": false,
+        "isANewlyPublishedClassified": false,
+        "isAPublicSale": false,
+        "isNewlyBuilt": false
+      }
+    },
+    "id": 6275455,
+    "media": {
+      "pictures": {
+        "items": [
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "6275455_11.jpg?cache=20180219131147",
+              "medium": "M_6275455_11.jpg?cache=20180219131147",
+              "small": "6275455_11.gif?cache=20180219131147"
+            }
+          },
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "6275455_132.jpg?cache=20180219131147",
+              "medium": "M_6275455_132.jpg?cache=20180219131147",
+              "small": "6275455_132.gif?cache=20180219131147"
+            }
+          },
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "6275455_17.jpg?cache=20180219131147",
+              "medium": "M_6275455_17.jpg?cache=20180219131147",
+              "small": "6275455_17.gif?cache=20180219131147"
+            }
+          }
+        ],
+        "baseUrl": "https://static.immoweb.be/photos/0/6/2/7/5/4/5/5/"
+      }
+    },
+    "property": {
+      "bedroom": { "count": 55 },
+      "location": {
+        "address": {
+          "country": "Belgium",
+          "district": "Leuven",
+          "locality": "Leuven",
+          "number": "41-43-45",
+          "placeName": "Bondgenotenlaan",
+          "postalCode": "3000",
+          "propertyName": "De Bond",
+          "province": "Flemish Brabant",
+          "region": "Flanders",
+          "regionCode": "FLANDERS",
+          "street": "Bondgenotenlaan"
+        },
+        "geoPoint": { "latitude": 50.8798771, "longitude": 4.7063343 }
+      },
+      "subtype": "FLAT_STUDIO",
+      "title": "Beautiful student rooms & studios for rent in centre Leuven",
+      "alternativeTitles": {
+        "nl": "Studentenresidentie De Bond, op kot in centrum Leuven."
+      },
+      "type": "APARTMENT"
+    },
+    "publication": {
+      "lastModificationDate": "2016-03-09T08:56:43.000+0000",
+      "visualisationOption": "XL"
+    },
+    "transaction": {
+      "certificates": {
+        "epc": {
+          "score": "A++",
+          "logoUrl": "https://static.immoweb.be/en/pics/fla/big/0.gif"
+        }
+      },
+      "rental": { "monthlyRentalPrice": 495 },
+      "segment": "RESIDENTIAL",
+      "soldOrRented": { "isSoldOrRented": false },
+      "subtype": "RENT_REGULAR",
+      "type": "FOR_RENT"
+    },
+    "travelDuration": {
+      "driving": "145",
+      "walking": "658",
+      "transit": "626",
+      "bicycling": "186"
+    },
+    "description": "The student rooms and the studios all have their own bathroom with shower,toilet and sink, and there is refrigerator in every room. The studios also have their own kitchen area and in some cases their own terrace.\r\n\r\nThere are communal kitchens in the building, a relaxation area and a sunny terrace which is open to all residents.\r\nThere is also an underground bicycle storage and a room with a washing machine and dryer. Prices start at €495 per month, and there is a fixed cost of €780 per year for internet, cleaning of the communal spaces, insurance, student tax, maintenance of the elevator and the building,... For your water, electricity and heating we work with an advance of 30 per month and calculate the actual usage with individual counters.\r\n\r\nMail to rent@studentflat.be for more information.",
+    "price": 495,
+    "surface": "-1",
+    "bedrooms": 55
+  },
+  {
+    "customers": [{ "publicInfo": { "name": "Rent@studentflat.be" } }],
+    "flagsAndStatistics": {
+      "flags": {
+        "isALifeAnnuitySale": false,
+        "isANewlyPublishedClassified": false,
+        "isAPublicSale": false,
+        "isNewlyBuilt": false
+      }
+    },
+    "id": 6555769,
+    "media": {
+      "pictures": {
+        "items": [
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "6555769_8.jpg?cache=20180219125957",
+              "medium": "M_6555769_8.jpg?cache=20180219125957",
+              "small": "6555769_8.gif?cache=20180219125957"
+            }
+          },
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "6555769_16.jpg?cache=20180219125957",
+              "medium": "M_6555769_16.jpg?cache=20180219125957",
+              "small": "6555769_16.gif?cache=20180219125957"
+            }
+          },
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "6555769_141.jpg?cache=20180219125957",
+              "medium": "M_6555769_141.jpg?cache=20180219125957",
+              "small": "6555769_141.gif?cache=20180219125957"
+            }
+          }
+        ],
+        "baseUrl": "https://static.immoweb.be/photos/0/6/5/5/5/7/6/9/"
+      }
+    },
+    "property": {
+      "bedroom": { "count": 1 },
+      "location": {
+        "address": {
+          "country": "Belgium",
+          "district": "Leuven",
+          "floor": 4,
+          "locality": "Leuven",
+          "number": "163",
+          "placeName": "Vismarkt",
+          "postalCode": "3000",
+          "propertyName": "Archiv.02",
+          "province": "Flemish Brabant",
+          "region": "Flanders",
+          "regionCode": "FLANDERS",
+          "street": "Mechelsestraat"
+        },
+        "geoPoint": { "latitude": 50.8850958, "longitude": 4.6977045 }
+      },
+      "subtype": "FLAT_STUDIO",
+      "title": "ARCHIV.02, recently renovated student rooms in centre Leuven",
+      "alternativeTitles": {
+        "nl": "ARCHIV.02, nieuwbouwstudentenresidentie in Leuven centrum."
+      },
+      "type": "APARTMENT"
+    },
+    "publication": {
+      "lastModificationDate": "2016-09-15T07:21:48.767+0000",
+      "visualisationOption": "XL"
+    },
+    "transaction": {
+      "certificates": {
+        "epc": {
+          "score": "A++",
+          "logoUrl": "https://static.immoweb.be/en/pics/fla/big/0.gif"
+        }
+      },
+      "rental": { "monthlyRentalPrice": 435 },
+      "segment": "RESIDENTIAL",
+      "soldOrRented": { "isSoldOrRented": false },
+      "subtype": "RENT_REGULAR",
+      "type": "FOR_RENT"
+    },
+    "travelDuration": {
+      "driving": "169",
+      "walking": "658",
+      "transit": "626",
+      "bicycling": "186"
+    },
+    "description": "Furnished student rooms in a newly renovated project in the centre of Leuven.\r\nEach room is equipped with its own bathroom.  There are also communal kitchens, a relaxation area with the necessary accommodations and a large, sunny garden with terrace that can be used by all tenants. \r\n\r\nRental prices start at €435 per month and €20 euro provision for the private use of water, gas and electricity measured with individual counters.\r\n\r\nMail to rent@studentflat.be or call 0499/882027 to schedule an appointment.\r\n",
+    "price": 435,
+    "surface": "-1",
+    "bedrooms": 1
+  },
+  {
+    "customers": [
+      {
+        "publicInfo": {
+          "logoUrl": "https://static.immoweb.be/logos/2724559.gif?cache=2017331306883",
+          "name": "NV Dyls Invest"
+        }
+      }
+    ],
+    "flagsAndStatistics": {
+      "flags": {
+        "isALifeAnnuitySale": false,
+        "isANewlyPublishedClassified": false,
+        "isAPublicSale": false,
+        "isNewlyBuilt": false
+      }
+    },
+    "id": 7373195,
+    "media": {
+      "pictures": {
+        "items": [
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "7373195_1.jpg?cache=20180205095314",
+              "medium": "M_7373195_1.jpg?cache=20180205095314",
+              "small": "7373195_1.gif?cache=20180205095314"
+            }
+          },
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "7373195_2.jpg?cache=20180205095314",
+              "medium": "M_7373195_2.jpg?cache=20180205095314",
+              "small": "7373195_2.gif?cache=20180205095314"
+            }
+          },
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "7373195_3.jpg?cache=20180205095314",
+              "medium": "M_7373195_3.jpg?cache=20180205095314",
+              "small": "7373195_3.gif?cache=20180205095314"
+            }
+          }
+        ],
+        "baseUrl": "https://static.immoweb.be/photos/0/7/3/7/3/1/9/5/"
+      }
+    },
+    "property": {
+      "bedroom": { "count": 4 },
+      "location": {
+        "address": {
+          "country": "Belgium",
+          "district": "Leuven",
+          "locality": "Leuven",
+          "number": "1",
+          "postalCode": "3000",
+          "propertyName": "Woods",
+          "province": "Flemish Brabant",
+          "region": "Flanders",
+          "regionCode": "FLANDERS",
+          "street": "Belle vue park"
+        },
+        "geoPoint": { "latitude": 50.880165, "longitude": 4.7185743 }
+      },
+      "subtype": "KOT",
+      "alternativeTitles": {
+        "nl": "WOODS - Trendy gemeubelde studentenkamers"
+      },
+      "type": "APARTMENT"
+    },
+    "publication": {
+      "lastModificationDate": "2018-02-05T09:47:25.800+0000",
+      "visualisationOption": "XL"
+    },
+    "transaction": {
+      "rental": { "monthlyRentalPrice": 390 },
+      "segment": "RESIDENTIAL",
+      "soldOrRented": { "isSoldOrRented": false },
+      "subtype": "RENT_REGULAR",
+      "type": "FOR_RENT"
+    },
+    "travelDuration": {
+      "driving": "684",
+      "walking": "658",
+      "transit": "626",
+      "bicycling": "186"
+    },
+    "description": "WOODS, een stijlvolle nieuwbouw met trendy studentenkamers aan het gloednieuwe Leuvense stadspark Belle Vue. Een echte toplocatie in een groene buurt nabij campussen en het bruisende stadsleven.\r\n\r\nIn het gebouw zijn er gemeenschappelijke keukens aanwezig met een fenomenaal uitzicht. Studenten kunnen gezellig samen vertoeven in de sfeervolle ontspanningsruimte die onder andere voorzien is van een zithoek, TV en een kickertafel. Er is een afgesloten fietsenberging en een waslokaal voorzien. Verder is er een mooie gemeenschappelijke tuin aanwezig, die ruimte biedt voor rust, ontspanning en sport..  De mogelijkheid bestaat om een ondergrondse autostaanplaats in het gebouw te huren. Kortom alles is aanwezig om jouw studenttijd zorgeloos en onvergetelijk te maken.\r\n\r\nDe huurprijs start vanaf €390 per maand. 780 euro voor de algemene onkosten, inclusief internet, lift, tweemaal per week onderhoud gemeenschappelijke delen en €30 provisie voor het privatief verbruik van water, gas en elektriciteit (individuele meters).",
+    "price": 390,
+    "surface": "-1",
+    "bedrooms": 4
+  },
+  {
+    "customers": [{ "publicInfo": { "name": "Merckx Gerda" } }],
+    "flagsAndStatistics": {
+      "flags": {
+        "isALifeAnnuitySale": false,
+        "isANewlyPublishedClassified": false,
+        "isAPublicSale": false,
+        "isNewlyBuilt": false
+      }
+    },
+    "id": 6856457,
+    "media": {
+      "pictures": {
+        "items": [
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "6856457_1.jpg?cache=20180903194727",
+              "medium": "M_6856457_1.jpg?cache=20180903194727",
+              "small": "6856457_1.gif?cache=20180903194727"
+            }
+          },
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "6856457_2.jpg?cache=20180903194727",
+              "medium": "M_6856457_2.jpg?cache=20180903194727",
+              "small": "6856457_2.gif?cache=20180903194727"
+            }
+          },
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "6856457_3.jpg?cache=20180903194727",
+              "medium": "M_6856457_3.jpg?cache=20180903194727",
+              "small": "6856457_3.gif?cache=20180903194727"
+            }
+          }
+        ],
+        "baseUrl": "https://static.immoweb.be/photos/0/6/8/5/6/4/5/7/"
+      }
+    },
+    "property": {
+      "bedroom": { "count": 1 },
+      "livingDescription": { "netHabitableSurface": 25 },
+      "location": {
+        "address": {
+          "box": "107",
+          "country": "Belgium",
+          "district": "Leuven",
+          "floor": 1,
+          "locality": "Leuven",
+          "number": "48",
+          "postalCode": "3000",
+          "province": "Flemish Brabant",
+          "region": "Flanders",
+          "regionCode": "FLANDERS",
+          "street": "Leeuwerikenstraat"
+        },
+        "geoPoint": { "latitude": 50.860528, "longitude": 4.701116 }
+      },
+      "subtype": "FLAT_STUDIO",
+      "type": "APARTMENT"
+    },
+    "publication": {
+      "lastModificationDate": "2018-09-03T19:46:07.000+0000",
+      "visualisationOption": "M"
+    },
+    "transaction": {
+      "rental": { "monthlyRentalPrice": 420 },
+      "segment": "RESIDENTIAL",
+      "soldOrRented": { "isSoldOrRented": false },
+      "subtype": "RENT_REGULAR",
+      "type": "FOR_RENT"
+    },
+    "travelDuration": {
+      "driving": "714",
+      "walking": "658",
+      "transit": "626",
+      "bicycling": "186"
+    },
+    "description": "Studio met kookhoek, recent verneiuwde  badkamer (douche, toilet en lavabo) en terras aan de achterzijde\r\nEigen keuze leverancier elektriciteit",
+    "price": 420,
+    "surface": 25,
+    "bedrooms": 1
+  },
+  {
+    "customers": [
+      {
+        "publicInfo": {
+          "logoUrl": "https://static.immoweb.be/logos/1783.gif?cache=201658070561Z",
+          "name": "BVM - Beheer & Vastgoed Makelaar"
+        }
+      }
+    ],
+    "flagsAndStatistics": {
+      "flags": {
+        "isALifeAnnuitySale": false,
+        "isANewlyPublishedClassified": false,
+        "isAPublicSale": false,
+        "isNewlyBuilt": false
+      }
+    },
+    "id": 7540460,
+    "media": {
+      "pictures": {
+        "items": [
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "7540460_1.jpg?cache=20180516191755",
+              "medium": "M_7540460_1.jpg?cache=20180516191755",
+              "small": "7540460_1.gif?cache=20180516191755"
+            }
+          },
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "7540460_2.jpg?cache=20180516191755",
+              "medium": "M_7540460_2.jpg?cache=20180516191755",
+              "small": "7540460_2.gif?cache=20180516191755"
+            }
+          },
+          {
+            "orientation": "PORTRAIT",
+            "relativeUrl": {
+              "large": "7540460_3.jpg?cache=20180516191755",
+              "medium": "M_7540460_3.jpg?cache=20180516191755",
+              "small": "7540460_3.gif?cache=20180516191755"
+            }
+          }
+        ],
+        "baseUrl": "https://static.immoweb.be/photos/0/7/5/4/0/4/6/0/"
+      }
+    },
+    "property": {
+      "bedroom": { "count": 1 },
+      "livingDescription": { "roomCount": 2 },
+      "location": {
+        "address": {
+          "country": "Belgium",
+          "district": "Leuven",
+          "locality": "Leuven",
+          "number": "25,",
+          "postalCode": "3000",
+          "province": "Flemish Brabant",
+          "region": "Flanders",
+          "regionCode": "FLANDERS",
+          "street": "Justus Lipsiusstraat"
+        },
+        "geoPoint": { "latitude": 50.8796475, "longitude": 4.7116975 }
+      },
+      "subtype": "KOT",
+      "alternativeTitles": {
+        "nl": "Laatste studentenkamers met eigen sanitair"
+      },
+      "type": "APARTMENT"
+    },
+    "publication": {
+      "lastModificationDate": "2018-05-16T19:13:25.647+0000",
+      "visualisationOption": "M"
+    },
+    "transaction": {
+      "certificates": {
+        "epc": {
+          "score": "D",
+          "logoUrl": "https://static.immoweb.be/en/pics/fla/big/300.gif"
+        }
+      },
+      "rental": { "monthlyRentalPrice": 495 },
+      "segment": "RESIDENTIAL",
+      "soldOrRented": { "isSoldOrRented": false },
+      "subtype": "RENT_REGULAR",
+      "type": "FOR_RENT"
+    },
+    "travelDuration": {
+      "driving": "520",
+      "walking": "658",
+      "transit": "626",
+      "bicycling": "186"
+    },
+    "description": "In dit centraal gelegen gebouw is er nog  1 studentenkamer en 2 kamers met eigen sanitair TE HUUR. <br>Gelegen vlakbij het station en in de onmiddellijke nabijheid van de Leuvense faculteiten.<br>Deze kamers hebben een oppervlakte tussen 13-28m².<br>De kamers zijn gemeubeld met een bed, bureau en kast en kamers met eigen sanitair beschikken over eigen douche, lavabo en toilet.<br>De studenten kunnen gebruik maken van de gemeenschappelijke keuken met zithoek, de fietsenstalling en de gemeenschappelijk tuin.<br>Huurprijs tussen 305-520 € + maandelijks vaste kost van 65 € voor verbruik water, elektriciteit en verwarming.<br>ENKEL VOOR STUDENTEN<br>Vrij vanaf 15/09/2017<br>",
+    "price": 495,
+    "surface": "-1",
+    "bedrooms": 1
+  }
+]

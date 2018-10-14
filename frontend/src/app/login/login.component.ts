@@ -66,8 +66,8 @@ export class LoginComponent implements OnInit {
 
   private createForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ['example', Validators.required],
+      password: ['example', Validators.required],
       remember: true
     });
   }

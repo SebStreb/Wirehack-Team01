@@ -10,11 +10,11 @@ import { ImmoWebService } from '@app/immoweb.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnChanges {
-  workLocation: string;
+  workLocation = '';
   otherLocation: string;
   housingType = 'HOUSE,APARTMENT';
-  rentOrBuy = 'FOR_SALE';
-  maxPrice: number;
+  rentOrBuy = 'FOR_RENT';
+  maxPrice = 900;
   minBedroom = 1;
   maxDuration = 40;
   houses: any[] = [];
@@ -23,17 +23,43 @@ export class HomeComponent implements OnInit, OnChanges {
   loading = false;
   noResults = false;
 
+  // dropdown
+  dropdownList: any[] = [];
+  selectedItems: any[] = [];
+  dropdownSettings = {};
+
   work_lat = 50.8063939;
   work_lng = 4.3151967;
 
   currentDir = '';
+
+  sliderOptions = {
+    floor: 5,
+    ceil: 60,
+    step: 5,
+    showSelectionBar: true,
+    translate: (value: number): string => `${value} min`
+  };
 
   @ViewChild('results')
   ResultsProp: ElementRef;
 
   constructor(private quoteService: QuoteService, private immoWebService: ImmoWebService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Schools' },
+      { item_id: 2, item_text: 'Daycares' },
+      { item_id: 3, item_text: 'Activities' },
+      { item_id: 4, item_text: 'Grocceries' }
+    ];
+    this.selectedItems = [{ item_id: 2, item_text: 'Daycares' }, { item_id: 4, item_text: 'Grocceries' }];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text'
+    };
+  }
 
   ngOnChanges() {
     this.ngOnInit();
@@ -72,8 +98,8 @@ export class HomeComponent implements OnInit, OnChanges {
         this.maxDuration,
         this.housingType,
         this.rentOrBuy,
-        this.maxPrice,
-        this.minBedroom
+        this.minBedroom,
+        this.maxPrice
       )
       .subscribe(
         (results: any) => {

@@ -19,8 +19,12 @@
         </div>
         <div class="col-md-6">
           <label class="form-row">
-            <span translate>Maximum travel time (minutes)</span>
-            <input type="number" [(ngModel)]="maxDuration" class="form-control durationInput" required />
+            <span translate>Maximum travel time</span>
+            <ng5-slider [(value)]="maxDuration" [options]="sliderOptions"></ng5-slider>
+          </label>
+          <label class="form-row">
+            <span translate>Maximum price</span>
+            <input type="number" [(ngModel)]="maxPrice" class="form-control durationInput" />
           </label>
         </div>
       </div>
@@ -36,10 +40,13 @@
           </label>
         </div>
         <div class="col-md-6">
-          <label class="form-row">
-            <span translate>Maximum price</span>
-            <input type="number" [(ngModel)]="maxPrice" class="form-control durationInput" />
-          </label>
+          <div class="form-row">
+            <span translate>I would like there to be near</span>
+            <div class="form-multi-select">
+              <ng-multiselect-dropdown [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings" >
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -59,13 +66,13 @@
           </label>
         </div>
       </div>
-      <button class="btn btn-primary" type="submit" (click)="search()">
+      <button class="btn btn-primary" type="submit" (click)="search()" [disabled]="workLocation.length == 0 || loading">
         <span translate>Search</span>
+        <img *ngIf="loading" src="assets/loading.gif" alt="Loading..." height="15px" />
       </button>
     </div>
   </div>
 
-  <div *ngIf="loading">Loading...</div>
   <div *ngIf="noResults">No Results Found</div>
   <div #results class="row" *ngIf="houses.length">
     <div class="map col-md-6">

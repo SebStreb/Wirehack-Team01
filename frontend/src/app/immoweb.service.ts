@@ -30,13 +30,7 @@ export class ImmoWebService {
     );
   }
 
-  getCenter(
-    userLocation: string
-  ): Observable<any> {
-    return <Observable<any>>(
-      this.httpClient.get(
-        `http://localhost:3000/get-coordinates?input=${userLocation}`
-      )
-    );
+  getCenter(userLocation: string): Observable<any> {
+    return <Observable<any>>this.httpClient.get(`http://localhost:3000/get-coordinates?input=${userLocation}`);
   }
 }

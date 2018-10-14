@@ -24,9 +24,16 @@ export class HomeComponent implements OnInit, OnChanges {
   noResults = false;
 
   // dropdown
-  dropdownList: any[] = [];
-  selectedItems: any[] = [];
-  dropdownSettings = {};
+  dropdownNearbyList: any[] = [];
+  selectedNearbyItems: any[] = [];
+  dropdownNearbySettings = {};
+
+  dropdownTransportMethodList: any[] = [];
+  selectedTransportMethodItems: any[] = [];
+  dropdownTransportMethodSettings = {};
+
+  preferredDurations: any[];
+  otherDurations: any[];
 
   work_lat = 50.8063939;
   work_lng = 4.3151967;
@@ -47,15 +54,27 @@ export class HomeComponent implements OnInit, OnChanges {
   constructor(private quoteService: QuoteService, private immoWebService: ImmoWebService) {}
 
   ngOnInit() {
-    this.dropdownList = [
+    this.dropdownNearbyList = [
       { item_id: 1, item_text: 'Schools' },
       { item_id: 2, item_text: 'Daycares' },
       { item_id: 3, item_text: 'Activities' },
-      { item_id: 4, item_text: 'Grocceries' }
+      { item_id: 4, item_text: 'Groceries' }
     ];
-    this.selectedItems = [{ item_id: 2, item_text: 'Daycares' }, { item_id: 4, item_text: 'Grocceries' }];
-    this.dropdownSettings = {
+    this.selectedNearbyItems = [{ item_id: 2, item_text: 'Daycares' }, { item_id: 4, item_text: 'Groceries' }];
+    this.dropdownNearbySettings = {
       singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text'
+    };
+    this.dropdownTransportMethodList = [
+      { item_id: 'bicycling', item_text: 'Cycling' },
+      { item_id: 'driving', item_text: 'Driving' },
+      { item_id: 'transit', item_text: 'Public transport' },
+      { item_id: 'walking', item_text: 'Walking' }
+    ];
+    this.selectedTransportMethodItems = [{ item_id: 'transit', item_text: 'Public transport' }];
+    this.dropdownTransportMethodSettings = {
+      singleSelection: 'false',
       idField: 'item_id',
       textField: 'item_text'
     };
@@ -70,6 +89,7 @@ export class HomeComponent implements OnInit, OnChanges {
       console.log(result);
     });
   }
+
   center(house: any) {
     this.lat = house.GeoPoint.latitude;
     this.lng = house.GeoPoint.longitude;
@@ -103,6 +123,9 @@ export class HomeComponent implements OnInit, OnChanges {
       )
       .subscribe(
         (results: any) => {
+          if (results.length == 0) {
+            this.noResults = true;
+          }
           this.houses = results.map((item: any) => {
             return {
               Id: item.id,
@@ -113,7 +136,7 @@ export class HomeComponent implements OnInit, OnChanges {
               Bedrooms: item.bedrooms,
               Size: item.surface,
               Price: item.price,
-              Travel: item.travels[0],
+              Travel: this.getTravelDurationByPreference(item.travels[0]),
               Image: item.image,
               Info: item.description,
               GeoPoint: item.geoPoint
@@ -131,6 +154,16 @@ export class HomeComponent implements OnInit, OnChanges {
           this.loading = false;
         }
       );
+  }
+
+  getTravelDurationByPreference(travelDuration: any) {
+    this.selectedTransportMethodItems.forEach(transportMethod => {
+      this.preferredDurations.push({
+        method: transportMethod.item_id,
+        duration: travelDuration[transportMethod.item_id]
+      });
+    });
+    console.log(this.preferredDurations);
   }
 
   getPriceString(price: number) {

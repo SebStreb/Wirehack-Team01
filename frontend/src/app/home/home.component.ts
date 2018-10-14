@@ -151,6 +151,7 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   getTravelDurationByPreference(travelDuration: any) {
+    console.log(travelDuration);
     const travelDurationWithSelection: any = {
       selected: [],
       other: []
@@ -160,12 +161,12 @@ export class HomeComponent implements OnInit, OnChanges {
         if (transportMethod.item_id === selectedTransportMethod.item_id) {
           travelDurationWithSelection.selected.push({
             iconClass: this.getIcon(transportMethod.item_id),
-            duration: travelDuration[transportMethod.item_id]
+            duration: travelDuration[transportMethod.item_id].duration
           });
         } else {
           travelDurationWithSelection.other.push({
             iconClass: this.getIcon(transportMethod.item_id),
-            duration: travelDuration[transportMethod.item_id]
+            duration: travelDuration[transportMethod.item_id].duration
           });
         }
       });

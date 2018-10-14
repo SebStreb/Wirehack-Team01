@@ -11,8 +11,8 @@
           <label class="form-row">
             <span translate>Work location</span>
             <input type="text" [(ngModel)]="workLocation" [ngModelOptions]="{standalone: true}"
-                   class="form-control locationInput"
-                   required autofocus/>
+                   class="form-control locationInput" (keydown.enter)="search()"
+                   required autofocus/><br>
           </label>
         </div>
         <div class="col-md-6">
@@ -115,11 +115,11 @@
     <div class="results col-md-6 text-left" style="height: 80vh; overflow-y: auto">
       <p> Sort by
         <!-- sorting can be done in frontend -->
-        <select>
-          <option>Bicycle</option>
-          <option>Drive</option>
-          <option>Public transport</option>
-          <option>Walk</option>
+        <select (change)="sort()" [(ngModel)]="sortOption">
+          <option>Bicycling</option>
+          <option>Driving</option>
+          <option>Transit</option>
+          <option>Walking</option>
         </select>
       </p>
       <div class="card" *ngFor="let house of houses" (click)="center(house)">
@@ -145,12 +145,13 @@
               target="_blank">www.immoweb.be</a></p>
           </div>
         </div>
-        <div class="row text-left durations">
-          <div class="col-md-2" *ngFor="let travelDuration of house.Travel.selected">
+        <div class="row text-left durations transport-modes">
+          <div class="col" *ngFor="let travelDuration of house.Travel.selected">
             <p><i class="{{travelDuration.iconClass}}"></i> {{getDurationString(travelDuration.duration)}}</p>
           </div>
-          <div class="col-md-2" *ngFor="let travelDuration of house.Travel.other">
-            <p><i class="{{travelDuration.iconClass}}"></i> {{getDurationString(travelDuration.duration)}}</p>
+          <div class="col" *ngFor="let travelDuration of house.Travel.other">
+            <p class="{{travelDuration.shorter}}"><i class="{{travelDuration.iconClass}}"></i>
+              {{getDurationString(travelDuration.duration)}}</p>
           </div>
         </div>
         <p><a (click)="getDirFor(house)">directions</a></p>

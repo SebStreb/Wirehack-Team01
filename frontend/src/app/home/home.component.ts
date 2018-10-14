@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit, OnChanges {
   loading = false;
   noResults = false;
 
+  sortOption: string;
+
   // dropdown
   dropdownNearbyList: any[] = [];
   selectedNearbyItems: any[] = [];
@@ -56,7 +58,7 @@ export class HomeComponent implements OnInit, OnChanges {
       { item_id: 3, item_text: 'Activities' },
       { item_id: 4, item_text: 'Groceries' }
     ];
-    this.selectedNearbyItems = [{ item_id: 2, item_text: 'Daycares' }, { item_id: 4, item_text: 'Groceries' }];
+    this.selectedNearbyItems = [];
     this.dropdownNearbySettings = {
       singleSelection: false,
       idField: 'item_id',
@@ -70,7 +72,7 @@ export class HomeComponent implements OnInit, OnChanges {
     ];
     this.selectedTransportMethodItems = [{ item_id: 'transit', item_text: 'Public transport' }];
     this.dropdownTransportMethodSettings = {
-      singleSelection: false,
+      singleSelection: true,
       idField: 'item_id',
       textField: 'item_text'
     };
@@ -121,21 +123,10 @@ export class HomeComponent implements OnInit, OnChanges {
           if (results.length === 0) {
             this.noResults = true;
           }
-          console.log(results);
-          results.sort((house1: any, house2: any) => {
-            if (
-              house1.travels[0][this.selectedTransportMethodItems[0].item_id].duration >
-              house2.travels[0][this.selectedTransportMethodItems[0].item_id].duration
-            ) {
-              return 1;
-            } else if (
-              house1.travels[0][this.selectedTransportMethodItems[0].item_id].duration <
-              house2.travels[0][this.selectedTransportMethodItems[0].item_id].duration
-            ) {
-              return -1;
-            }
-            return 0;
-          });
+          if (this.sortOption == null) {
+            this.sortOption = this.selectedTransportMethodItems[0].item_id;
+          }
+          this.sortBy(results, this.sortOption);
 
           this.houses = results.map((item: any) => {
             return {
@@ -166,22 +157,41 @@ export class HomeComponent implements OnInit, OnChanges {
       );
   }
 
+  sort() {
+    this.sortOption = this.sortOption.toLowerCase();
+    this.search();
+  }
+
+  sortBy(array: any[], sortOption: string) {
+    array.sort((house1: any, house2: any) => {
+      if (house1.travels[0][sortOption].duration > house2.travels[0][sortOption].duration) {
+        return 1;
+      } else if (house1.travels[0][sortOption].duration < house2.travels[0][sortOption].duration) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
   getTravelDurationByPreference(travelDuration: any) {
     const travelDurationWithSelection: any = {
       selected: [],
       other: []
     };
+    const preferredDuration = travelDuration[this.selectedTransportMethodItems[0].item_id].duration;
     this.dropdownTransportMethodList.forEach(transportMethod => {
       this.selectedTransportMethodItems.forEach(selectedTransportMethod => {
         if (transportMethod.item_id === selectedTransportMethod.item_id) {
           travelDurationWithSelection.selected.push({
             iconClass: this.getIcon(transportMethod.item_id),
-            duration: travelDuration[transportMethod.item_id].duration
+            duration: travelDuration[transportMethod.item_id].duration,
+            shorter: false
           });
         } else {
           travelDurationWithSelection.other.push({
             iconClass: this.getIcon(transportMethod.item_id),
-            duration: travelDuration[transportMethod.item_id].duration
+            duration: travelDuration[transportMethod.item_id].duration,
+            shorter: this.getColorForShortest(travelDuration[transportMethod.item_id].duration, preferredDuration)
           });
         }
       });
@@ -202,6 +212,12 @@ export class HomeComponent implements OnInit, OnChanges {
     }
   }
 
+  getColorForShortest(duration: number, preferredDuration: number) {
+    if (duration < preferredDuration) {
+      return 'shorter';
+    }
+  }
+
   getPriceString(price: number) {
     let priceString = '' + (price % 1000);
     while (price >= 1000) {
@@ -218,7 +234,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
   getDurationString(duration: number) {
     duration = (duration - (duration % 60)) / 60;
-    let durationString = '~ ';
+    let durationString = '';
     if (duration < 60) {
       durationString += duration + 'm';
     } else {

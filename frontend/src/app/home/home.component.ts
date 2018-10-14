@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit, OnChanges {
   workLocation = '';
   otherLocation: string;
   housingType = 'HOUSE,APARTMENT';
-  rentOrBuy = 'FOR_SALE';
-  maxPrice: number;
+  rentOrBuy = 'FOR_RENT';
+  maxPrice = 900;
   minBedroom = 1;
   maxDuration = 40;
   houses: any[] = [];

@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit, OnChanges {
   houses: any[] = [];
   lat = 50.8063939;
   lng = 4.3151967;
+  loading = false;
+  noResults = false;
 
   work_lat = 50.8063939;
   work_lng = 4.3151967;
@@ -45,6 +47,8 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   search() {
+    this.loading = true;
+    this.noResults = false;
     this.immoWebService
       .getCenter(this.workLocation)
       .subscribe((results: any) => {
@@ -82,8 +86,11 @@ export class HomeComponent implements OnInit, OnChanges {
         console.log(results);
       }, error => {
         console.error('error loading', error);
+        this.noResults = true;
       }, () => {
-        this.ResultsProp.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // window.scrollTo(0, document.body.scrollHeight);
+        // TODO: this doesn't work :( scrolling to bottom
+        this.loading = false;
       });
   }
 

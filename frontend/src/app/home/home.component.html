@@ -19,8 +19,8 @@
         </div>
         <div class="col-md-6">
           <label class="form-row">
-            <span translate>Maximum travel time (minutes)</span>
-            <input type="number" [(ngModel)]="maxDuration" class="form-control durationInput" required />
+            <span translate>Maximum travel time</span>
+            <ng5-slider [(value)]="maxDuration" [options]="sliderOptions"></ng5-slider>
           </label>
         </div>
       </div>
@@ -59,7 +59,7 @@
           </label>
         </div>
       </div>
-      <button class="btn btn-primary" type="submit" (click)="search()">
+      <button class="btn btn-primary" type="submit" (click)="search()" [disabled]="workLocation.length == 0">
         <span translate>Search</span>
       </button>
     </div>

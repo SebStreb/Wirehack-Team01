@@ -12,7 +12,7 @@ import { ImmoWebService } from '@app/immoweb.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnChanges {
-  workLocation: string;
+  workLocation = '';
   otherLocation: string;
   housingType = 'HOUSE,APARTMENT';
   rentOrBuy = 'FOR_SALE';
@@ -30,7 +30,16 @@ export class HomeComponent implements OnInit, OnChanges {
 
   currentDir = '';
 
-  @ViewChild('results') ResultsProp: ElementRef;
+  sliderOptions = {
+    floor: 5,
+    ceil: 60,
+    step: 5,
+    showSelectionBar: true,
+    translate: (value: number): string => `${value} min`
+  };
+
+  @ViewChild('results')
+  ResultsProp: ElementRef;
 
   constructor(private quoteService: QuoteService, private immoWebService: ImmoWebService) {}
 
@@ -51,22 +60,21 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   getDirFor(house: any) {
-    this.currentDir = `http://maps.google.com/maps?saddr=${this.work_lat},${this.work_lng}&daddr=${house.GeoPoint.latitude},${house.GeoPoint.longitude}`;
+    this.currentDir = `http://maps.google.com/maps?saddr=${this.work_lat},${this.work_lng}&daddr=${
+      house.GeoPoint.latitude
+    },${house.GeoPoint.longitude}`;
   }
-
 
   search() {
     this.loading = true;
     this.noResults = false;
-    this.immoWebService
-      .getCenter(this.workLocation)
-      .subscribe((results: any) => {
-        console.log('center is', results);
-        this.work_lat = results[0];
-        this.work_lng = results[1];
-        this.lat = results[0];
-        this.lng = results[1];
-      });
+    this.immoWebService.getCenter(this.workLocation).subscribe((results: any) => {
+      console.log('center is', results);
+      this.work_lat = results[0];
+      this.work_lng = results[1];
+      this.lat = results[0];
+      this.lng = results[1];
+    });
     this.immoWebService
       .getAll(
         this.workLocation,
@@ -77,33 +85,37 @@ export class HomeComponent implements OnInit, OnChanges {
         this.maxPrice,
         this.minBedroom
       )
-      .subscribe((results: any) => {
-        this.houses = results.map((item: any) => {
-          return {
-            Id: item.id,
-            PropertyType: item.property.type,
-            LocationType: item.transaction.type,
-            City: item.property.location.address.locality,
-            PostalCode: item.property.location.address.postalCode,
-            Bedrooms: item.bedrooms,
-            Size: item.surface,
-            Price: item.price,
-            Duration: item.travelDuration.driving,
-            TravelDuration: item.travelDuration,
-            Image: item.media.pictures.baseUrl + item.media.pictures.items[0].relativeUrl.large,
-            Info: item.description,
-            GeoPoint: item.property.location.geoPoint
-          };
-        });
-        console.log(results);
-      }, error => {
-        console.error('error loading', error);
-        this.noResults = true;
-      }, () => {
-        // window.scrollTo(0, document.body.scrollHeight);
-        // TODO: this doesn't work :( scrolling to bottom
-        this.loading = false;
-      });
+      .subscribe(
+        (results: any) => {
+          this.houses = results.map((item: any) => {
+            return {
+              Id: item.id,
+              PropertyType: item.property.type,
+              LocationType: item.transaction.type,
+              City: item.property.location.address.locality,
+              PostalCode: item.property.location.address.postalCode,
+              Bedrooms: item.bedrooms,
+              Size: item.surface,
+              Price: item.price,
+              Duration: item.travelDuration.driving,
+              TravelDuration: item.travelDuration,
+              Image: item.media.pictures.baseUrl + item.media.pictures.items[0].relativeUrl.large,
+              Info: item.description,
+              GeoPoint: item.property.location.geoPoint
+            };
+          });
+          console.log(results);
+        },
+        error => {
+          console.error('error loading', error);
+          this.noResults = true;
+        },
+        () => {
+          // window.scrollTo(0, document.body.scrollHeight);
+          // TODO: this doesn't work :( scrolling to bottom
+          this.loading = false;
+        }
+      );
   }
 
   getPriceString(price: number) {

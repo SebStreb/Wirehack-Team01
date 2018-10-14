@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { Ng5SliderModule } from 'ng5-slider';
+
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { HomeRoutingModule } from './home-routing.module';
@@ -21,6 +23,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     FormsModule,
     SharedModule,
     HomeRoutingModule,
+    Ng5SliderModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD9QGDDHiiVSUMpH3ZbwhAI6w_AAK_rJMY'
     }),

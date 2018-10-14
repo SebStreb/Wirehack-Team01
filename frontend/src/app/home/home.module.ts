@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { Ng5SliderModule } from 'ng5-slider';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
@@ -24,6 +25,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     SharedModule,
     HomeRoutingModule,
     Ng5SliderModule,
+    NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD9QGDDHiiVSUMpH3ZbwhAI6w_AAK_rJMY'
     }),

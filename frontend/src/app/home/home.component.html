@@ -10,25 +10,33 @@
         <div class="col-md-6">
           <label class="form-row">
             <span translate>Work location</span>
-            <input type="text" [(ngModel)]="workLocation" [ngModelOptions]="{standalone: true}" class="form-control locationInput"
-              required autofocus/><br>
-            <span translate>Location 2</span>
-            <input type="text" [(ngModel)]="otherLocation" [ngModelOptions]="{standalone: true}" class="form-control locationInput" />
-            <!--(change)=getSuggestions() -->
+            <input type="text" [(ngModel)]="workLocation" [ngModelOptions]="{standalone: true}"
+                   class="form-control locationInput"
+                   required autofocus/>
           </label>
         </div>
         <div class="col-md-6">
           <label class="form-row">
-            <span translate>Maximum travel time</span>
-            <ng5-slider [(value)]="maxDuration" [options]="sliderOptions"></ng5-slider>
-          </label>
-          <label class="form-row">
-            <span translate>Maximum price</span>
-            <input type="number" [(ngModel)]="maxPrice" class="form-control durationInput" />
+            <span translate>Rent or buy</span>
+            <select [(ngModel)]="rentOrBuy" class="form-control rentOrBuy" required>
+              <option value="FOR_SALE" selected>Buy</option>
+              <option value="FOR_RENT">Rent</option>
+            </select>
           </label>
         </div>
       </div>
+
       <div class="row">
+        <div class="col-md-6">
+          <div class="form-row">
+            <span translate>Preferred method of transport</span>
+            <div class="form-multi-select">
+              <ng-multiselect-dropdown [data]="dropdownTransportMethodList" [(ngModel)]="selectedTransportMethodItems"
+                                       [settings]="dropdownTransportMethodSettings">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
         <div class="col-md-6">
           <label class="form-row">
             <span translate>Housing type</span>
@@ -39,36 +47,45 @@
             </select>
           </label>
         </div>
+      </div>
+
+      <div class="row">
         <div class="col-md-6">
           <div class="form-row">
             <span translate>I would like there to be near</span>
             <div class="form-multi-select">
-              <ng-multiselect-dropdown [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings" >
+              <ng-multiselect-dropdown [data]="dropdownNearbyList" [(ngModel)]="selectedNearbyItems"
+                                       [settings]="dropdownNearbySettings">
               </ng-multiselect-dropdown>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <label class="form-row">
-            <span translate>Rent or buy</span>
-            <select [(ngModel)]="rentOrBuy" class="form-control rentOrBuy" required>
-              <option value="FOR_SALE" selected>Buy</option>
-              <option value="FOR_RENT">Rent</option>
-            </select>
-          </label>
-        </div>
         <div class="col-md-6">
           <label class="form-row">
             <span translate>Minimum number of bedrooms</span>
-            <input type="number" [(ngModel)]="minBedroom" class="form-control minBedroom" />
+            <input type="number" [(ngModel)]="minBedroom" class="form-control minBedroom"/>
           </label>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-6 custom-slider">
+          <label class="form-row">
+            <span translate>Maximum travel time</span>
+            <ng5-slider [(value)]="maxDuration" [options]="sliderOptions"></ng5-slider>
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-row">
+            <span translate>Maximum price</span>
+            <input type="number" [(ngModel)]="maxPrice" class="form-control durationInput"/>
+          </label>
+        </div>
+      </div>
+
       <button class="btn btn-primary" type="submit" (click)="search()" [disabled]="workLocation.length == 0 || loading">
         <span translate>Search</span>
-        <img *ngIf="loading" src="assets/loading.gif" alt="Loading..." height="15px" />
+        <img *ngIf="loading" src="assets/loading.gif" alt="Loading..." height="15px"/>
       </button>
     </div>
   </div>
@@ -79,7 +96,8 @@
       <iframe *ngIf="currentDir" width="100%" height="80vh" [src]="currentDir"></iframe>
       <agm-map style="height: 80vh" [latitude]=lat [longitude]=lng [zoom]=12>
         <agm-marker [latitude]=work_lat [longitude]=work_lng [iconUrl]="'assets/work.png'"></agm-marker>
-        <agm-marker *ngFor="let house of houses" [latitude]=house.GeoPoint.latitude [longitude]=house.GeoPoint.longitude>
+        <agm-marker *ngFor="let house of houses" [latitude]=house.GeoPoint.latitude
+                    [longitude]=house.GeoPoint.longitude>
           <agm-snazzy-info-window [maxWidth]="500" [closeWhenOthersOpen]="true">
             <ng-template>
               <p style="width: 200px" class="houseDetails">{{house.City}}
@@ -106,7 +124,7 @@
       <div class="card" *ngFor="let house of houses" (click)="center(house)">
         <div class="row">
           <div class="col-md-4">
-            <img class="houseImage" src="{{house.Image}}" />
+            <img class="houseImage" src="{{house.Image}}"/>
           </div>
           <div class="col-md-8">
             <div class="row">
@@ -116,21 +134,26 @@
                   {{house.Size}} m^2</p>
               </div>
               <div class="col-md-3 text-right">
-                  <p class="housePrice"><i class="fa fa-euro-sign"></i> {{getPriceString(house.Price)}}</p>
+                <p class="housePrice"><i class="fa fa-euro-sign"></i> {{getPriceString(house.Price)}}</p>
               </div>
 
             </div>
             <p class="houseInfo text-justify">{{house.Info}}</p>
-            <p class="houseLink text-justify"><a href="https://www.immoweb.be/en/ad/{{house.PropertyType}}/{{house.TransactionType}}/{{house.City}}/{{house.PostalCode}}/id{{house.Id}}"
-                target="_blank">www.immoweb.be</a></p>
+            <p class="houseLink text-justify"><a
+              href="https://www.immoweb.be/en/ad/{{house.PropertyType}}/{{house.TransactionType}}/{{house.City}}/{{house.PostalCode}}/id{{house.Id}}"
+              target="_blank">www.immoweb.be</a></p>
           </div>
         </div>
         <div class="row text-left">
-            <!-- show the lowest, and the one that is selected -->
-          <div class="col-md-2"><p><i class="fa fa-walking"></i> {{getDurationString(house.TravelDuration.walking)}}</p></div>
-          <div class="col-md-2"><p><i class="fa fa-bicycle"></i> {{getDurationString(house.TravelDuration.bicycling)}}</p></div>
-          <div class="col-md-2"><p><i class="fa fa-car"></i> {{getDurationString(house.TravelDuration.driving)}}</p></div>
-          <div class="col-md-2"><p><i class="fa fa-bus"></i> {{getDurationString(house.TravelDuration.transit)}}</p></div>
+          <!-- show the lowest, and the one that is selected -->
+          <div class="col-md-2"><p><i class="fa fa-walking"></i> {{getDurationString(house.TravelDuration.walking)}}</p>
+          </div>
+          <div class="col-md-2"><p><i class="fa fa-bicycle"></i> {{getDurationString(house.TravelDuration.bicycling)}}
+          </p></div>
+          <div class="col-md-2"><p><i class="fa fa-car"></i> {{getDurationString(house.TravelDuration.driving)}}</p>
+          </div>
+          <div class="col-md-2"><p><i class="fa fa-bus"></i> {{getDurationString(house.TravelDuration.transit)}}</p>
+          </div>
         </div>
         <p><a (click)="getDirFor(house)">directions</a></p>
       </div>

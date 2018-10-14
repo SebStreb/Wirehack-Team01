@@ -41,8 +41,8 @@ app.get("/get-location", async (req, res) => {
     inputCoordinates,
     houseOrApp,
     rentOrBuy,
-    maxPrice,
-    minBedroom
+    minBedroom,
+    maxPrice
   );
 
   // filter those without geopoint

@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit, OnChanges {
   selectedItems: any[] = [];
   dropdownSettings = {};
 
-
   work_lat = 50.8063939;
   work_lng = 4.3151967;
 
@@ -104,8 +103,8 @@ export class HomeComponent implements OnInit, OnChanges {
         this.maxDuration,
         this.housingType,
         this.rentOrBuy,
-        this.maxPrice,
-        this.minBedroom
+        this.minBedroom,
+        this.maxPrice
       )
       .subscribe(
         (results: any) => {

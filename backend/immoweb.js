@@ -15,11 +15,11 @@ exports.getClassifieds = async (
     propertyTypes: properType, // required
     transactionTypes: transaType, // required
     minBedroomCount: minCount,
-    maxPrice: maxPrice,
     geoSearchPoint: polyline.encode([coordinates]),
     geoSearchRadius: 10000,
     range: "0-5"
   };
+  if (maxPrice && maxPrice != 'null') params.maxPrice = maxPrice;
   const url = `${api.immoweb_url}/classifieds?${querystring.stringify(params)}`;
 
   // eslint-disable-next-line no-console

@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit, OnChanges {
     ];
     this.selectedTransportMethodItems = [{ item_id: 'transit', item_text: 'Public transport' }];
     this.dropdownTransportMethodSettings = {
-      singleSelection: 'false',
+      singleSelection: false,
       idField: 'item_id',
       textField: 'item_text'
     };
@@ -118,9 +118,25 @@ export class HomeComponent implements OnInit, OnChanges {
       )
       .subscribe(
         (results: any) => {
-          if (results.length == 0) {
+          if (results.length === 0) {
             this.noResults = true;
           }
+          console.log(results);
+          results.sort((house1: any, house2: any) => {
+            if (
+              house1.travels[0][this.selectedTransportMethodItems[0].item_id].duration >
+              house2.travels[0][this.selectedTransportMethodItems[0].item_id].duration
+            ) {
+              return 1;
+            } else if (
+              house1.travels[0][this.selectedTransportMethodItems[0].item_id].duration <
+              house2.travels[0][this.selectedTransportMethodItems[0].item_id].duration
+            ) {
+              return -1;
+            }
+            return 0;
+          });
+
           this.houses = results.map((item: any) => {
             return {
               Id: item.id,
@@ -151,7 +167,6 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   getTravelDurationByPreference(travelDuration: any) {
-    console.log(travelDuration);
     const travelDurationWithSelection: any = {
       selected: [],
       other: []

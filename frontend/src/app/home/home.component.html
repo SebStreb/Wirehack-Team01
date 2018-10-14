@@ -112,12 +112,13 @@
         </agm-marker>
       </agm-map>
     </div>
-    <div class="results col-md-6" style="height: 80vh; overflow-y: auto">
-      <p style="text-align: right">
-        sort by
+    <div class="results col-md-6 text-left" style="height: 80vh; overflow-y: auto">
+      <p> Sort by
         <!-- sorting can be done in frontend -->
         <select>
+          <option>Bicycle</option>
           <option>Drive</option>
+          <option>Public transport</option>
           <option>Walk</option>
         </select>
       </p>
@@ -144,7 +145,7 @@
               target="_blank">www.immoweb.be</a></p>
           </div>
         </div>
-        <div class="row text-left">
+        <div class="row text-left durations">
           <div class="col-md-2" *ngFor="let travelDuration of house.Travel.selected">
             <p><i class="{{travelDuration.iconClass}}"></i> {{getDurationString(travelDuration.duration)}}</p>
           </div>
